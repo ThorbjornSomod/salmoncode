@@ -1,6 +1,17 @@
 #ifndef OBJECTDETECT_H
 #define OBJECTDETECT_H
 
+/*System Headers*/
+
+#include <iostream>
+#include <iomanip>
+#include <cstdio>
+#include <fstream>
+#include <stdio.h>
+#include <thread>
+#include <string.h>
+#include <vector>
+
 /*OpenCV Object Detection Headers*/
 
 #include "opencv2/core.hpp"
@@ -22,16 +33,7 @@
 
 /*LibLBP Descriptor Headers*/
 
-#include "LBP.hpp"
-
-/*System Headers*/
-
-#include <iostream>
-#include <iomanip>
-#include <fstream>
-#include <stdio.h>
-#include <thread>
-#include <string.h>
+#include "./LBP/LBP.hpp"
 
 /*Namespaces*/
 
@@ -39,9 +41,11 @@ using namespace cv;
 using namespace cv::xfeatures2d;
 using namespace cuda;
 using namespace std;
+using namespace lbp;
 
 /*Functions*/
 
+vector<double> extractLBPFeatures(int rad, int pts, string mapping, string filename, bool normalizeHist);
 
 
 #endif /*!OBJECTDETECT_H*/

@@ -1,10 +1,7 @@
 CXX=g++
 CFLAGS=-g -Wall -std=c++11 `pkg-config opencv --cflags`
-SRCS=./main.cpp ./objectDetect.cpp
+SRCS=./main.cpp ./objectDetect.cpp ./LBP/LBP.cpp
 PROG=salmoninfo
-
-#OPENCV=$(pkg-config opencv --libs)
-#LIBS=$(OPENCV)
 LIBS = `pkg-config opencv --libs`
 
 $(PROG):$(SRCS)
