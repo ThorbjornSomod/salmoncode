@@ -27,3 +27,6 @@
 *.exe
 *.out
 *.app
+
+# File types
+*.mp4
