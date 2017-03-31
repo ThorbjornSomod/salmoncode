@@ -33,7 +33,7 @@
 
 /*LibLBP Descriptor Headers*/
 
-#include "./LBP/LBP.hpp"
+#include "lbp.hpp"
 
 /*Namespaces*/
 
@@ -41,11 +41,8 @@ using namespace cv;
 using namespace cv::xfeatures2d;
 using namespace cuda;
 using namespace std;
-using namespace lbp;
 
 /*Functions*/
-
-vector<double> extractLBPFeatures(int rad, int pts, string mapping, string filename, bool normalizeHist);
 
 
 #endif /*!OBJECTDETECT_H*/
