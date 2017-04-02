@@ -7,12 +7,17 @@ vector<Rect> multiScaleDetection(Mat src, Size minSize, Size maxSize, double sca
 	Size windowSize = minSize;
 	Mat imageRoi;
 	Rect roi;
+	bool rowCheck, colCheck;
+
 
 	vector<Rect> detections;
 	
 	// While the sliding window is not larger than the max window size:
 
 	while(windowSize.height < maxSize.height && windowSize.width < maxSize.width){
+
+		rowCheck = false;
+		colCheck = false;
 
 		for(int r = 0; r < src.rows; r += stride){
 			
@@ -21,6 +26,7 @@ vector<Rect> multiScaleDetection(Mat src, Size minSize, Size maxSize, double sca
 			if(r + windowSize.height > src.rows){
 
 				r = src.rows - windowSize.height;
+				rowCheck = true;
 
 			}
 
@@ -31,6 +37,7 @@ vector<Rect> multiScaleDetection(Mat src, Size minSize, Size maxSize, double sca
 				if(c + windowSize.width > src.cols){
 
 					c = src.cols - windowSize.width;
+					colCheck = true;
 
 				}
 
@@ -42,7 +49,12 @@ vector<Rect> multiScaleDetection(Mat src, Size minSize, Size maxSize, double sca
 				// If region contains a detection, append to detections:
 
 				//if(detection){detections.push_back(roi);
- 	
+
+				if(rowCheck && colCheck){
+
+					break;				
+	
+				} 	
 			}
 		}
 
