@@ -472,7 +472,8 @@ LBP & LBP::calcLBP(Mat d_img, double radius, bool borderCopy){
 	int dx = xsize - bsizex + 1;
 	int dy = ysize - bsizey + 1;
     
-	// Fill the center pixel matrix C.
+	// Fill the center pixel matrix C:
+
 	// d_C is a shallow copy. But that's OK because we are not changing the values, but only comparing to N.
 
 	Mat d_C(d_img, Rect(origx, origy, dx, dy));
@@ -834,7 +835,57 @@ std::string LBP::toString(bool verbose) const{
 
 /*INTERFACE FUNCTIONS*/
 
-vector<double> extractLBPFeatures(int rad, int pts, string mapping, Mat src, bool normalizeHist){
+Mat returnLBPImage(Mat src, int rad, int pts, string mapping){
+
+	// Convert image to double precision:
+
+	src.convertTo(src, CV_64F);
+
+	Mat lbpImg;
+
+	switch(src.channels()){
+
+		case 1:
+			lbpImg = Mat(src.size(), CV_8UC1, Scalar(0));
+			break;
+		
+		case 3: lbpImg = Mat(src.size(), CV_8UC3, Scalar(0));
+			break;
+
+		default:
+			cerr << "Unsupported number of image channels, must be 1 / 3 only." << endl;
+			exit(1);
+
+	}
+
+	LBP lbp(pts, LBP::strToType(mapping));
+
+	for(int i = 0; i < src.channels(); i++){
+
+		// Copy channel i:
+
+		Mat img(src.size(), src.depth(), 1);
+		const int from_to1[] = {i, 0};
+		mixChannels(&src, 1, &img, 1, from_to1, 1);
+
+		// Calculate the descriptor of channel i:
+
+		lbp.calcLBP(img, rad, true);
+
+		// Copy the lbp image:
+
+		const int from_to2[] = {0, i};
+		Mat tmpImg = lbp.getLBPImage();
+		mixChannels(&tmpImg, 1, &lbpImg, 1, from_to2, 1);
+
+	}
+
+	return lbpImg;
+	
+}
+
+
+vector<double> extractLBPFeatureVector(Mat src, int k, int rad, int pts, string mapping, bool normalizeHist){
 
 	// Convert image to double precision:
 
@@ -853,7 +904,7 @@ vector<double> extractLBPFeatures(int rad, int pts, string mapping, Mat src, boo
 			break;
 
 		default:
-			cerr << "Unsupported number of image channels, must be 1/3 only." << endl;
+			cerr << "Unsupported number of image channels, must be 1 / 3 only." << endl;
 			exit(1);
 		
 	}
@@ -880,13 +931,15 @@ vector<double> extractLBPFeatures(int rad, int pts, string mapping, Mat src, boo
 
 	}
 
+	
+
 	vector<double> hist = lbp.calcHist().getHist(normalizeHist);
 	
 	return hist;
 
 }
 
-void createSVMTrainingFile(cv::String directory, string fileName, int label, int rad, int pts, string mapping, bool normalizeHist){
+void createSVMTrainingFile(cv::String directory, string fileName, int label, int k, int rad, int pts, string mapping, bool normalizeHist){
 
 	Mat src;
 
@@ -914,7 +967,7 @@ void createSVMTrainingFile(cv::String directory, string fileName, int label, int
 			
 			// Retrieve descriptor for each image:
 
-			vector<double> desc = extractLBPFeatures(rad, pts, mapping, src, normalizeHist);
+			vector<double> desc = extractLBPFeatureVector(src, k, rad, pts, mapping, normalizeHist);
 
 			myfile << label << " ";
 
@@ -945,4 +998,74 @@ void createSVMTrainingFile(cv::String directory, string fileName, int label, int
 		cout << "Reading file failed." << endl;
 
 	}
+}
+
+void printAvgDims(cv::String directory){
+
+	double imageCount = 0;
+
+	double sumWidth = 0;
+
+	double sumHeight = 0;
+
+	double avgWidth, avgHeight;
+
+	Mat src;
+
+	vector<cv::String> filenames;
+
+	cv::glob(directory, filenames);
+
+	for(size_t i = 0; i < filenames.size(); ++i){
+
+		src = imread(filenames[i]);
+
+		sumWidth += src.cols;
+
+		sumHeight += src.rows;
+
+		imageCount++;
+
+	}
+
+	avgWidth = sumWidth / imageCount;
+
+	avgHeight = sumHeight / imageCount;
+
+	cout << "Average dimensions w/h: " << avgWidth << "/" << avgHeight << endl;
+
+}
+
+void printLargestDims(cv::String directory){
+
+	double imageCount = 0;
+
+	double width, height;
+
+	double lWidth = 0, lHeight = 0;
+
+	Mat src;
+
+	vector<cv::String> filenames;
+
+	cv::glob(directory, filenames);
+
+	for(size_t i = 0; i < filenames.size(); ++i){
+
+		src = imread(filenames[i]);
+
+		if(src.cols > lWidth){
+
+			lWidth = src.cols;
+
+		}
+
+		if(src.rows > lHeight){
+
+			lHeight = src.rows;
+
+		}
+	}
+
+	cout << "Largest dimensions w/h: " << lWidth << "/" << lHeight << endl;
 }

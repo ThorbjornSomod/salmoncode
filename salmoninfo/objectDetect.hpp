@@ -44,5 +44,7 @@ using namespace std;
 
 /*Functions*/
 
+vector<Rect> multiScaleDetection(Mat src, Size minSize, Size maxSize, double scaling, int stride);
+
 
 #endif /*!OBJECTDETECT_H*/

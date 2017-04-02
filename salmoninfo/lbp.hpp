@@ -239,8 +239,11 @@ namespace lbp{
 }
 ;
 
-vector<double> extractLBPFeatures(int rad, int pts, string mapping, Mat src, bool normalizeHist);
-void createSVMTrainingFile(cv::String directory, string fileName, int label, int rad, int pts, string mapping, bool normalizeHist);
+Mat returnLBPImage(Mat src, int rad, int pts, string mapping);
+vector<double> extractLBPFeatureVector(Mat src, int k, int rad, int pts, string mapping, bool normalizeHist);
+void createSVMTrainingFile(cv::String directory, string fileName, int label, int k, int rad, int pts, string mapping, bool normalizeHist);
+void printAvgDims(cv::String directory);
+void printLargestDims(cv::String directory);
 
 
 #endif
