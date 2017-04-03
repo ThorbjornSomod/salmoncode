@@ -5,10 +5,10 @@ vector<Rect> multiScaleDetection(Mat src, Size minSize, Size maxSize, double sca
 	// Initialize window size:
 
 	Size windowSize = minSize;
-	Mat imageRoi;
-	Rect roi;
 	bool rowCheck, colCheck;
-
+	Rect roi;
+	Mat imageRoi;
+	Mat preProcessed;
 
 	vector<Rect> detections;
 	
@@ -46,9 +46,13 @@ vector<Rect> multiScaleDetection(Mat src, Size minSize, Size maxSize, double sca
 				roi = Rect(c, r, windowSize.width, windowSize.height);
 				imageRoi = src(roi);
 				
+				// Pre-process region:
+
+				preProcessed  = preProcessImage(imageRoi, minSize); 	
+				
 				// If region contains a detection, append to detections:
 
-				//if(detection){detections.push_back(roi);
+				//if(detection){detections.push_back(roi);}
 
 				if(rowCheck && colCheck){
 
@@ -68,3 +72,18 @@ vector<Rect> multiScaleDetection(Mat src, Size minSize, Size maxSize, double sca
 	return detections;
 	
 }
+
+Mat preProcessImage(Mat src, Size outputDims){
+
+	Mat dst;
+
+	cv::resize(src, dst, outputDims, 0, 0, INTER_AREA);
+
+	cv::equalizeHist(dst, dst);
+
+	cv::GaussianBlur(dst, dst, Size(5,5), 0, 0, BORDER_DEFAULT);
+
+	return dst;
+
+}
+

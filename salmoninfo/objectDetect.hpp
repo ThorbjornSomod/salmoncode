@@ -45,6 +45,7 @@ using namespace std;
 /*Functions*/
 
 vector<Rect> multiScaleDetection(Mat src, Size minSize, Size maxSize, double scaling, int stride);
+Mat preProcessImage(Mat src, Size outputDims); 
 
 
 #endif /*!OBJECTDETECT_H*/

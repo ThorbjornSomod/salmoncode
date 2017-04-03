@@ -240,7 +240,7 @@ namespace lbp{
 ;
 
 Mat returnLBPImage(Mat src, int rad, int pts, string mapping);
-vector<double> extractLBPFeatureVector(Mat src, int k, int rad, int pts, string mapping, bool normalizeHist);
+vector<double> extractLBPFeatureVector(Mat src, int b, int o, int rad, int pts, string mapping, bool normalizeHist);
 void createSVMTrainingFile(cv::String directory, string fileName, int label, int k, int rad, int pts, string mapping, bool normalizeHist);
 void printAvgDims(cv::String directory);
 void printLargestDims(cv::String directory);

@@ -885,7 +885,7 @@ Mat returnLBPImage(Mat src, int rad, int pts, string mapping){
 }
 
 
-vector<double> extractLBPFeatureVector(Mat src, int k, int rad, int pts, string mapping, bool normalizeHist){
+vector<double> extractLBPFeatureVector(Mat src, int b, int o, int rad, int pts, string mapping, bool normalizeHist){
 
 	// Convert image to double precision:
 
@@ -893,6 +893,8 @@ vector<double> extractLBPFeatureVector(Mat src, int k, int rad, int pts, string 
 
 	Mat lbpImg;
 
+	// Check for sufficient channels:	
+	
 	switch(src.channels()){
 
 		case 1:
@@ -930,6 +932,11 @@ vector<double> extractLBPFeatureVector(Mat src, int k, int rad, int pts, string 
 		mixChannels(&tmpImg, 1, &lbpImg, 1, from_to2, 1);
 
 	}
+
+	// Calculate the block width/height:
+
+	int blockWidth = static_cast<int>(floor(src.width / b));
+	int blockHeight = static_cast<int>(floor(src.height / b));
 
 	
 
