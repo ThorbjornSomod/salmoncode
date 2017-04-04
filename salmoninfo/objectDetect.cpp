@@ -52,7 +52,7 @@ vector<Rect> multiScaleDetection(Mat src, Size minSize, Size maxSize, double sca
 				
 				// If region contains a detection, append to detections:
 
-				//if(detection){detections.push_back(roi);}
+				// if(detection){detections.push_back(roi);}
 
 				if(rowCheck && colCheck){
 

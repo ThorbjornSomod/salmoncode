@@ -885,7 +885,11 @@ Mat returnLBPImage(Mat src, int rad, int pts, string mapping){
 }
 
 
-vector<double> extractLBPFeatureVector(Mat src, int b, int o, int rad, int pts, string mapping, bool normalizeHist){
+vector<double> extractLBPFeatureVector(Mat src, int numBlocks, int rad, int pts, string mapping, bool normalizeHist){
+
+	// Save src image type:
+
+	int type = src.type();
 
 	// Convert image to double precision:
 
@@ -901,52 +905,65 @@ vector<double> extractLBPFeatureVector(Mat src, int b, int o, int rad, int pts, 
 			lbpImg = Mat(src.size(), CV_8UC1, Scalar(0));
 			break;
 
-		case 3:
-			lbpImg = Mat(src.size(), CV_8UC3, Scalar(0));
-			break;
-
 		default:
-			cerr << "Unsupported number of image channels, must be 1 / 3 only." << endl;
+			cerr << "Unsupported number of image channels, must be 1." << endl;
 			exit(1);
 		
 	}
 
+	// Create mapping:
+
 	LBP lbp(pts, LBP::strToType(mapping));
 
-	for(int i = 0; i < src.channels(); i++){
+	// Calculate the descriptor image:
 
-		// Copy channel i:
+	lbp.calcLBP(src, rad, true);
 
-		Mat img(src.size(), src.depth(), 1);
-		const int from_to1[] = {i, 0};
-		mixChannels(&src, 1, &img, 1, from_to1, 1);
+	// Allocate memory the same size as the image:
 
-		// Calculate the descriptor of channel i:
-
-		lbp.calcLBP(img, rad, true);
-
-		// Copy the LBP image:
-
-		const int from_to2[] = {0, i};
-		Mat tmpImg = lbp.getLBPImage();
-		mixChannels(&tmpImg, 1, &lbpImg, 1, from_to2, 1);
-
-	}
+	Mat mask(src.rows, src.cols, type);
 
 	// Calculate the block width/height:
 
-	int blockWidth = static_cast<int>(floor(src.width / b));
-	int blockHeight = static_cast<int>(floor(src.height / b));
+	int blockWidth = static_cast<int>(floor(src.cols / numBlocks));
+	int blockHeight = static_cast<int>(floor(src.rows / numBlocks));
 
-	
+	// Create vector to store histograms:
 
-	vector<double> hist = lbp.calcHist().getHist(normalizeHist);
+	vector<double> featureVector;
+
+	// Get histogram for each block:
+
+	vector<double> hist;
+
+	int blockX, blockY;
+
+	for(int r = 0; r < numBlocks; r++){
+
+		for(int c = 0; c < numBlocks; c++){
+		
+			mask = Mat::zeros(src.rows, src.cols, type);
+
+			blockX = (src.cols / numBlocks) * c;
+
+			blockY = (src.rows / numBlocks) * r;
+
+			Mat block(mask, Range(blockY, blockY + blockHeight), Range(blockX, blockX + blockWidth));
+		
+			block = Scalar(255);
+
+			hist = lbp.calcHist(mask).getHist();
 	
-	return hist;
+			featureVector.insert(featureVector.end(), hist.begin(), hist.end());
+
+		}
+	}
+	
+	return featureVector;
 
 }
 
-void createSVMTrainingFile(cv::String directory, string fileName, int label, int k, int rad, int pts, string mapping, bool normalizeHist){
+void createSVMTrainingFile(cv::String directory, string fileName, int label, int numBlocks, int rad, int pts, string mapping, bool normalizeHist){
 
 	Mat src;
 
@@ -964,7 +981,7 @@ void createSVMTrainingFile(cv::String directory, string fileName, int label, int
 
 		for(size_t i = 0; i < filenames.size(); ++i){
 
-			src = imread(filenames[i]);
+			src = imread(filenames[i], IMREAD_GRAYSCALE);
 
 			if(!src.data){
 
@@ -974,7 +991,7 @@ void createSVMTrainingFile(cv::String directory, string fileName, int label, int
 			
 			// Retrieve descriptor for each image:
 
-			vector<double> desc = extractLBPFeatureVector(src, k, rad, pts, mapping, normalizeHist);
+			vector<double> desc = extractLBPFeatureVector(src, numBlocks, rad, pts, mapping, normalizeHist);
 
 			myfile << label << " ";
 
@@ -1010,11 +1027,8 @@ void createSVMTrainingFile(cv::String directory, string fileName, int label, int
 void printAvgDims(cv::String directory){
 
 	double imageCount = 0;
-
 	double sumWidth = 0;
-
 	double sumHeight = 0;
-
 	double avgWidth, avgHeight;
 
 	Mat src;
@@ -1044,10 +1058,6 @@ void printAvgDims(cv::String directory){
 }
 
 void printLargestDims(cv::String directory){
-
-	double imageCount = 0;
-
-	double width, height;
 
 	double lWidth = 0, lHeight = 0;
 
