@@ -5,9 +5,9 @@ using namespace std;
 
 int main() {
 
-	//detectionTest("grayscale.xml");
+	detectionTest("grayscale.xml");
 
-	readAnnotationFile("/home/sealab/lbpcudacascade/training/pos/annotations.txt");
+	//readAnnotationFile("/home/sealab/lbpcudacascade/training/pos/annotations.txt");
 
 	//system("pause");
 

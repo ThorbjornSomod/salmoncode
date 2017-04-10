@@ -215,8 +215,8 @@ void detectionTest(std::string cascade_name) {
 	//gpu_cascade->setMinObjectSize(cv::Size(25,35));
 
 	//cv::VideoCapture reader(0);
-	//cv::VideoCapture reader("rtsp://admin:ral1004@192.168.2.3:2020/videoinput_1/h264_1/media.stm");
-	cv::VideoCapture reader("testing.mp4");
+	cv::VideoCapture reader("rtsp://admin:ral1004@192.168.1.6:2020/videoinput_1/h264_1/media.stm");
+	//cv::VideoCapture reader("testing.mp4");
 	
 	//cv::VideoWriter writer("gpu_detection.avi", CV_FOURCC('X', 'V', 'I', 'D'), 50, cv::Size(1920, 1080), true);
 
@@ -257,7 +257,7 @@ void detectionTest(std::string cascade_name) {
 
 		gpu_cascade->convert(objbuf, objects);
 
-		if (!objects.empty()) {
+		if (!objects.empty()) 
 
 			//std::cout << objects.size() << std::endl;
 

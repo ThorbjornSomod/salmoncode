@@ -35,6 +35,10 @@
 
 #include "lbp.hpp"
 
+/*LibSVM Headers*/
+
+#include "svm.h"
+
 /*Namespaces*/
 
 using namespace cv;
@@ -45,7 +49,8 @@ using namespace std;
 /*Functions*/
 
 vector<Rect> multiScaleDetection(Mat src, Size minSize, Size maxSize, double scaling, int stride);
-Mat preProcessImage(Mat src, Size outputDims); 
+int svmDetect(vector<double> featureVector, struct svm_model *SVMModel);
+Mat preProcessImage(Mat src, Size outputDims);
 
 
 #endif /*!OBJECTDETECT_H*/

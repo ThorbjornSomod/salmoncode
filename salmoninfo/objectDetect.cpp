@@ -2,6 +2,18 @@
 
 vector<Rect> multiScaleDetection(Mat src, Size minSize, Size maxSize, double scaling, int stride){
 
+	// Initialize SVM model:
+
+	const char *MODEL_FILE = "trainSVM.model";
+
+	struct svm_model *SVMModel;
+
+	if((SVMModel = svm_load_model(MODEL_FILE)) == 0){
+
+		fprintf(stderr, "Can't load SVM model. %s", MODEL_FILE);
+	
+	}
+
 	// Initialize window size:
 
 	Size windowSize = minSize;
@@ -49,10 +61,16 @@ vector<Rect> multiScaleDetection(Mat src, Size minSize, Size maxSize, double sca
 				// Pre-process region:
 
 				preProcessed  = preProcessImage(imageRoi, minSize); 	
-				
+			
+				vector<double> featureVector = extractLBPFeatureVector(preProcessed, 5, 1, 8, "hf", true);
+	
 				// If region contains a detection, append to detections:
+				
+				if(svmDetect(featureVector, SVMModel) > 0){
 
-				// if(detection){detections.push_back(roi);}
+					detections.push_back(roi);
+
+				}
 
 				if(rowCheck && colCheck){
 
@@ -87,3 +105,25 @@ Mat preProcessImage(Mat src, Size outputDims){
 
 }
 
+int svmDetect(vector<double> featureVector, struct svm_model *SVMModel){
+
+	struct svm_node *svmVec;
+
+	svmVec = (struct svm_node *)malloc((featureVector.size() + 1)*sizeof(struct svm_node));
+
+	int i;
+
+	for(i = 0; i < featureVector.size(); i++){
+
+		svmVec[i].index = i + 1;
+		svmVec[i].value = featureVector[i];
+
+	}
+
+	svmVec[i].index = -1;
+
+	int prediction = svm_predict(SVMModel, svmVec);
+
+	return prediction;
+
+}
