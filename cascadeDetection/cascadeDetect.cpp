@@ -2,6 +2,8 @@
 
 void cascadeDetect(std::string video_source, std::string coidal_cascade_name, std::string head_cascade_name, std::string dorsal_cascade_name) {
 
+	// Toggle detections:
+
 	bool detectCoidals = 1;
 	bool detectHeads = 1;
 	bool detectDorsals = 1;

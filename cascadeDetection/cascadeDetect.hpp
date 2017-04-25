@@ -20,6 +20,10 @@
 #include "opencv2/cudaimgproc.hpp"
 #include "opencv2/cudacodec.hpp"
 
+/*VLC Library Headers*/
+
+#include <vlc/vlc.h>
+
 /*System Headers*/
 
 #include <iostream>

@@ -1,0 +1,7 @@
+﻿-- logger module started --
+stream_out_transcode error: cannot find video encoder (module:any fourcc:R24 ). Take a look few lines earlier to see possible reason.
+stream_out_transcode error: cannot create video chain
+stream_out_smem error: Smem does only support raw audio format
+core error: cannot create packetizer output (mp4a)
+core error: cannot create packetizer output (h264)
+avi warning: cannot get packet header, track disabled
