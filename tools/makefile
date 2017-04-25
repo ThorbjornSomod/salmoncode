@@ -1,10 +1,8 @@
 CXX=g++
 CFLAGS=-g -Wall -std=c++11 `pkg-config opencv --cflags`
-SRCS=./main.cpp ./detectionTest.cpp ./formatConverter.cpp
-PROG=tests
+SRCS=./main.cpp ./tools.cpp ./formatConverter.cpp
+PROG=tools
 
-#OPENCV=$(pkg-config opencv --libs)
-#LIBS=$(OPENCV)
 LIBS = `pkg-config opencv --libs`
 
 $(PROG):$(SRCS)

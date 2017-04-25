@@ -1,11 +1,9 @@
-#include "detectionTest.hpp"
+#include "tools.hpp"
 #include "formatConverter.hpp"
 
 using namespace std;
 
 int main() {
-
-	detectionTest("grayscale.xml");
 
 	//readAnnotationFile("/home/sealab/lbpcudacascade/training/pos/annotations.txt");
 
@@ -14,6 +12,16 @@ int main() {
 	//normalizeImageUsingGpu();
 
 	//imageConverter();
+
+	//Mat src;
+
+	//for(int i = 1; i < 197; i++){
+
+	//	src = imread("/home/sealab/svmlearner/training/pos/pos3/pos" + std::to_string(i) + ".png", IMREAD_UNCHANGED);
+
+	//	imwrite("/home/sealab/svmlearner/training/pos/tmp/pos" + std::to_string(868 + i) + ".png", src);
+
+	//} 
 
 	return 0;
 
