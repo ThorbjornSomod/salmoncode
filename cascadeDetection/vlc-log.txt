@@ -1,7 +1,650 @@
 ﻿-- logger module started --
-stream_out_transcode error: cannot find video encoder (module:any fourcc:R24 ). Take a look few lines earlier to see possible reason.
-stream_out_transcode error: cannot create video chain
-stream_out_smem error: Smem does only support raw audio format
-core error: cannot create packetizer output (mp4a)
-core error: cannot create packetizer output (h264)
-avi warning: cannot get packet header, track disabled
+core debug: VLC media player - 2.2.5.1 Umbrella
+core debug: Copyright © 1996-2017 the VideoLAN team
+core debug: revision 2.2.2+git20170407+r59012+56~ubuntu16.04.1
+core debug: configured with ./configure  '--build=x86_64-linux-gnu' '--prefix=/usr' '--includedir=${prefix}/include' '--mandir=${prefix}/share/man' '--infodir=${prefix}/share/info' '--sysconfdir=/etc' '--localstatedir=/var' '--disable-silent-rules' '--libdir=${prefix}/lib/x86_64-linux-gnu' '--libexecdir=${prefix}/lib/x86_64-linux-gnu' '--disable-maintainer-mode' '--disable-dependency-tracking' '--config-cache' '--disable-update-check' '--enable-fast-install' '--docdir=/usr/share/doc/vlc-data' '--libdir=/usr/lib' '--with-binary-version=2.2.2+git20170407+r59012+56~ubuntu16.04.1' '--enable-a52' '--enable-aa' '--enable-bluray' '--enable-bonjour' '--enable-caca' '--enable-chromaprint' '--enable-dbus' '--enable-dca' '--enable-directfb' '--enable-dvbpsi' '--enable-dvdnav' '--enable-faad' '--enable-flac' '--enable-fluidsynth' '--enable-freerdp' '--enable-freetype' '--enable-fribidi' '--enable-gles1' '--enable-gles2' '--enable-gnutls' '--enable-jack' '--enable-kate' '--enable-libass' '--enable-libmpeg2' '--enable-libxml2' '--enable-lirc' '--enable-live555' '--enable-mad' '--enable-mkv' '--enable-mod' '--enable-mpc' '--enable-mtp' '--enable-mux_ogg' '--enable-ncurses' '--enable-notify' '--enable-ogg' '--enable-opus' '--enable-pulse' '--enable-qt' '--enable-realrtsp' '--enable-samplerate' '--enable-schroedinger' '--enable-sdl' '--enable-sdl-image' '--enable-sftp' '--enable-shine' '--enable-shout' '--enable-skins2' '--enable-speex' '--enable-svg' '--enable-svgdec' '--enable-taglib' '--enable-theora' '--enable-twolame' '--enable-upnp' '--enable-vcdx' '--enable-vdpau' '--enable-vnc' '--enable-vorbis' '--enable-x264' '--enable-x265' '--enable-zvbi' '--with-kde-solid=/usr/share/kde4/apps/solid/actions/' '--disable-decklink' '--disable-dxva2' '--disable-fdkaac' '--disable-gnomevfs' '--disable-goom' '--disable-libtar' '--disable-mfx' '--disable-opencv' '--disable-projectm' '--disable-sndio' '--disable-telx' '--disable-vpx' '--disable-vsxu' '--disable-wasapi' '--enable-alsa' '--enable-atmo' '--enable-dc1394' '--enable-dv1394' '--enable-linsys' '--enable-omxil' '--enable-udev' '--enable-v4l2' '--enable-libva' '--enable-vcd' '--enable-smbclient' '--disable-oss' '--enable-crystalhd' '--enable-mmx' '--enable-sse' '--disable-neon' '--disable-altivec' 'build_alias=x86_64-linux-gnu' 'CFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security ' 'LDFLAGS=-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,--as-needed' 'CPPFLAGS=-Wdate-time -D_FORTIFY_SOURCE=2' 'CXXFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security ' 'OBJCFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security'
+core debug: using interface module "logger"
+core debug: creating audio output
+core debug: looking for audio output module matching "any": 5 candidates
+pulse debug: using library version 8.0.0
+pulse debug:  (compiled with version 8.0.0, protocol 30)
+pulse debug: connected locally to unix:/run/user/1000/pulse/native as client #160
+pulse debug: using protocol 30, server protocol 30
+pulse debug: adding sink 0: alsa_output.pci-0000_01_00.1.hdmi-stereo (HDA NVidia Digital Stereo (HDMI))
+pulse debug: adding sink 1: alsa_output.pci-0000_00_1f.3.analog-stereo (Built-in Audio Analog Stereo)
+core debug: using audio output module "pulse"
+core debug: keeping audio output
+core debug: Creating an input for 'shitfile.mp4'
+core debug: using sout chain=`transcode{vcodec=RV24}:smem{video-prerender-callback=4202058,video-postrender-callback=4202183,video-data=140724864089424,no-time-sync},'
+core debug: stream=`smem'
+core debug: looking for sout stream module matching "smem": 22 candidates
+core debug: set config option: sout-smem-video-prerender-callback to 4202058
+core debug: set config option: sout-smem-video-postrender-callback to 4202183
+core debug: set config option: sout-smem-video-data to 140724864089424
+core debug: set config option: sout-smem-time-sync to (null)
+core debug: using sout stream module "stream_out_smem"
+core debug: stream=`transcode'
+core debug: looking for sout stream module matching "transcode": 22 candidates
+core debug: set config option: sout-transcode-vcodec to RV24
+stream_out_transcode debug: Checking video codec mapping for RV24 got RV24 
+stream_out_transcode debug: codec video=RV24 0x0 scaling: 0.000000 0kb/s
+core debug: using sout stream module "stream_out_transcode"
+core debug: using timeshift granularity of 50 MiB, in path '/tmp'
+core debug: `file:///home/sealab/salmoncode/cascadeDetection/shitfile.mp4' gives access `file' demux `' path `/home/sealab/salmoncode/cascadeDetection/shitfile.mp4'
+core debug: specified demux `any'
+core debug: creating demux: access='file' demux='any' location='/home/sealab/salmoncode/cascadeDetection/shitfile.mp4' file='/home/sealab/salmoncode/cascadeDetection/shitfile.mp4'
+core debug: looking for access_demux module matching "file": 20 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='/home/sealab/salmoncode/cascadeDetection/shitfile.mp4', path='/home/sealab/salmoncode/cascadeDetection/shitfile.mp4'
+core debug: looking for access module matching "file": 25 candidates
+filesystem debug: opening file `/home/sealab/salmoncode/cascadeDetection/shitfile.mp4'
+core debug: using access module "filesystem"
+core debug: Using stream method for AStream*
+core debug: starting pre-buffering
+core debug: received first data after 0 ms
+core debug: pre-buffering done 1024 bytes in 0s - 200000 KiB/s
+core debug: looking for stream_filter module matching "any": 9 candidates
+core debug: no stream_filter modules matched
+core debug: looking for stream_filter module matching "record": 9 candidates
+core debug: using stream_filter module "record"
+core debug: creating demux: access='file' demux='any' location='/home/sealab/salmoncode/cascadeDetection/shitfile.mp4' file='/home/sealab/salmoncode/cascadeDetection/shitfile.mp4'
+core debug: looking for demux module matching "mp4": 66 candidates
+mp4 warning: unknown box type cenc (incompletely loaded)
+mp4 debug: added fragment moov
+mp4 debug: dumping root Box "root"
+mp4 debug: |   + ftyp size 24 offset 0
+mp4 debug: |   + moov size 4288 offset 24
+mp4 debug: |   |   + mvhd size 108 offset 32
+mp4 debug: |   |   + trak size 4129 offset 140
+mp4 debug: |   |   |   + tkhd size 92 offset 148
+mp4 debug: |   |   |   + edts size 36 offset 240
+mp4 debug: |   |   |   |   + elst size 28 offset 248
+mp4 debug: |   |   |   + mdia size 3993 offset 276
+mp4 debug: |   |   |   |   + mdhd size 32 offset 284
+mp4 debug: |   |   |   |   + hdlr size 45 offset 316
+mp4 debug: |   |   |   |   + minf size 3908 offset 361
+mp4 debug: |   |   |   |   |   + vmhd size 20 offset 369
+mp4 debug: |   |   |   |   |   + dinf size 36 offset 389
+mp4 debug: |   |   |   |   |   |   + dref size 28 offset 397
+mp4 debug: |   |   |   |   |   |   |   + url  size 12 offset 413
+mp4 debug: |   |   |   |   |   + stbl size 3844 offset 425
+mp4 debug: |   |   |   |   |   |   + stsd size 152 offset 433
+mp4 debug: |   |   |   |   |   |   |   + avc1 size 136 offset 449
+mp4 debug: |   |   |   |   |   |   |   |   + avcC size 50 offset 535
+mp4 debug: |   |   |   |   |   |   + stts size 2064 offset 585
+mp4 debug: |   |   |   |   |   |   + stss size 36 offset 2649
+mp4 debug: |   |   |   |   |   |   + stsc size 28 offset 2685
+mp4 debug: |   |   |   |   |   |   + stsz size 1536 offset 2713
+mp4 debug: |   |   |   |   |   |   + stco size 20 offset 4249
+mp4 debug: |   |   + udta size 43 offset 4269
+mp4 debug: |   |   |   + cenc size 35 offset 4277
+mp4 debug: |   + wide size 8 offset 4312
+mp4 debug: |   + mdat size 20999439 offset 4320
+mp4 debug: ISO Media file (isom) version 0.
+mp4 debug: found 1 tracks
+mp4 warning: elst box found
+mp4 debug:    - [0] duration=15119ms media time=0ms) rate=1.0
+mp4 debug: track[Id 0x1] read 1 chunk
+mp4 warning: STTS table of 256 entries
+mp4 debug: track[Id 0x1] read 379 samples length:15s
+core debug: selecting program id=0
+mp4 debug: adding track[Id 0x1] video (enable) language eng
+mp4 debug: fragment offset 24, data 4328<->21003759, duration 0
+core debug: using demux module "mp4"
+core debug: looking for a subtitle file in /home/sealab/salmoncode/cascadeDetection/
+core debug: looking for packetizer module matching "any": 23 candidates
+packetizer_h264 debug: found NAL_SPS (sps_id=0)
+packetizer_h264 debug: found NAL_PPS (pps_id=0 sps_id=0)
+packetizer_h264 debug: avcC length size=4, sps=1, pps=1
+core debug: using packetizer module "packetizer_h264"
+core debug: starting in sync mode
+core debug: looking for meta reader module matching "any": 2 candidates
+lua debug: Trying Lua scripts in /home/sealab/.local/share/vlc/lua/meta/reader
+lua debug: Trying Lua scripts in /usr/lib/vlc/lua/meta/reader
+lua debug: Trying Lua playlist script /usr/lib/vlc/lua/meta/reader/filename.luac
+lua debug: Trying Lua scripts in /usr/share/vlc/lua/meta/reader
+core debug: no meta reader modules matched
+core debug: `file:///home/sealab/salmoncode/cascadeDetection/shitfile.mp4' successfully opened
+mp4 debug: elst (0) gives 0ms (movie)-> 0ms (track)
+mp4 debug: track[Id 0x1] using Sync Sample Box (stss)
+mp4 debug: stss gives 0 --> 0 (sample number)
+core debug: Buffering 0%
+core debug: switching to async mode
+core debug: adding a new sout input (sout_input:0x7f5e5401b7b0)
+stream_out_transcode debug: creating video transcoding from fcc=`h264' to fcc=`RV24'
+core debug: looking for decoder module matching "any": 42 candidates
+core debug: Buffering 0%
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: trying to use direct rendering
+avcodec debug: allowing 1 thread(s) for decoding
+avcodec debug: avcodec codec (H264 - MPEG-4 AVC (part 10)) started
+core debug: using decoder module "avcodec"
+core debug: looking for encoder module matching "any": 21 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: Time base for probing setted to 1/1000000
+avcodec debug: Time base set to 1/1000000
+core debug: Buffering 13%
+core debug: Buffering 26%
+core debug: Buffering 39%
+core debug: Buffering 53%
+core debug: Buffering 66%
+avcodec debug: found encoder Raw video
+core debug: using encoder module "avcodec"
+core debug: Buffering 79%
+core debug: removing module "avcodec"
+core debug: Buffering 93%
+core debug: Stream buffering done (319 ms in 12 ms)
+core debug: Decoder wait done in 0 ms
+avcodec debug: available hardware decoder output format 109 (vdpau)
+avcodec debug: available hardware decoder output format 53 (vaapi_vld)
+avcodec debug: available software decoder output format 12 (yuvj420p)
+core debug: looking for hw decoder module matching "any": 4 candidates
+vdpau_avcodec debug: video surface limits: 4096x4096
+vdpau_avcodec debug: decoder profile limits: level 41 mb 65536 4096x4096
+vdpau_avcodec error: decoder profile above limits: level 42 1920x1088
+core debug: no hw decoder modules matched
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+stream_out_transcode debug: decoder aspect is 1.761468:1
+stream_out_transcode debug: source pixel aspect is 0.990826:1
+stream_out_transcode debug: scaled pixel aspect is 0.990826:1
+stream_out_transcode debug: source 1920x1080, destination 1920x1080
+stream_out_transcode debug: source fps 19677/785, destination 19677/785
+stream_out_transcode: input interval 39894 (base 785)
+stream_out_transcode: output interval 39894 (base 785)
+stream_out_transcode debug: encoder aspect is 1920:1090
+core debug: looking for video filter2 module matching "any": 63 candidates
+swscale debug: 1920x1080 (1920x1090) chroma: J420 -> 1920x1080 (1920x1090) chroma: RV24 with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: Filter 'Swscale' (0x7f5e54bf4218) appended to chain
+stream_out_transcode debug: destination (after video filters) 1920x1090
+core debug: looking for encoder module matching "any": 21 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: Time base for probing setted to 785/19677
+avcodec debug: Time base set to 785/19677
+avcodec debug: found encoder Raw video
+core debug: using encoder module "avcodec"
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 566605, last: 566606)
+avcodec debug: enabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (566606)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 566605, last: 566606)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (566606)
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 566605, last: 566606)
+avcodec debug: enabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (566606)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 566605, last: 566606)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (566606)
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 566605, last: 566606)
+avcodec debug: enabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (566606)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 566605, last: 566606)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (566606)
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 566605, last: 566606)
+avcodec debug: enabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (566606)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 566605, last: 566606)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (566606)
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 566605, last: 566606)
+avcodec debug: enabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (566606)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 566605, last: 566606)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (566606)
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 566605, last: 566606)
+avcodec debug: enabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (566606)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 566605, last: 566606)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (566606)
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 566605, last: 566606)
+avcodec debug: enabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (566606)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+﻿-- logger module started --
+core debug: VLC media player - 2.2.5.1 Umbrella
+core debug: Copyright © 1996-2017 the VideoLAN team
+core debug: revision 2.2.2+git20170407+r59012+56~ubuntu16.04.1
+core debug: configured with ./configure  '--build=x86_64-linux-gnu' '--prefix=/usr' '--includedir=${prefix}/include' '--mandir=${prefix}/share/man' '--infodir=${prefix}/share/info' '--sysconfdir=/etc' '--localstatedir=/var' '--disable-silent-rules' '--libdir=${prefix}/lib/x86_64-linux-gnu' '--libexecdir=${prefix}/lib/x86_64-linux-gnu' '--disable-maintainer-mode' '--disable-dependency-tracking' '--config-cache' '--disable-update-check' '--enable-fast-install' '--docdir=/usr/share/doc/vlc-data' '--libdir=/usr/lib' '--with-binary-version=2.2.2+git20170407+r59012+56~ubuntu16.04.1' '--enable-a52' '--enable-aa' '--enable-bluray' '--enable-bonjour' '--enable-caca' '--enable-chromaprint' '--enable-dbus' '--enable-dca' '--enable-directfb' '--enable-dvbpsi' '--enable-dvdnav' '--enable-faad' '--enable-flac' '--enable-fluidsynth' '--enable-freerdp' '--enable-freetype' '--enable-fribidi' '--enable-gles1' '--enable-gles2' '--enable-gnutls' '--enable-jack' '--enable-kate' '--enable-libass' '--enable-libmpeg2' '--enable-libxml2' '--enable-lirc' '--enable-live555' '--enable-mad' '--enable-mkv' '--enable-mod' '--enable-mpc' '--enable-mtp' '--enable-mux_ogg' '--enable-ncurses' '--enable-notify' '--enable-ogg' '--enable-opus' '--enable-pulse' '--enable-qt' '--enable-realrtsp' '--enable-samplerate' '--enable-schroedinger' '--enable-sdl' '--enable-sdl-image' '--enable-sftp' '--enable-shine' '--enable-shout' '--enable-skins2' '--enable-speex' '--enable-svg' '--enable-svgdec' '--enable-taglib' '--enable-theora' '--enable-twolame' '--enable-upnp' '--enable-vcdx' '--enable-vdpau' '--enable-vnc' '--enable-vorbis' '--enable-x264' '--enable-x265' '--enable-zvbi' '--with-kde-solid=/usr/share/kde4/apps/solid/actions/' '--disable-decklink' '--disable-dxva2' '--disable-fdkaac' '--disable-gnomevfs' '--disable-goom' '--disable-libtar' '--disable-mfx' '--disable-opencv' '--disable-projectm' '--disable-sndio' '--disable-telx' '--disable-vpx' '--disable-vsxu' '--disable-wasapi' '--enable-alsa' '--enable-atmo' '--enable-dc1394' '--enable-dv1394' '--enable-linsys' '--enable-omxil' '--enable-udev' '--enable-v4l2' '--enable-libva' '--enable-vcd' '--enable-smbclient' '--disable-oss' '--enable-crystalhd' '--enable-mmx' '--enable-sse' '--disable-neon' '--disable-altivec' 'build_alias=x86_64-linux-gnu' 'CFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security ' 'LDFLAGS=-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,--as-needed' 'CPPFLAGS=-Wdate-time -D_FORTIFY_SOURCE=2' 'CXXFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security ' 'OBJCFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security'
+core debug: using interface module "logger"
+core debug: creating audio output
+core debug: looking for audio output module matching "any": 5 candidates
+pulse debug: using library version 8.0.0
+pulse debug:  (compiled with version 8.0.0, protocol 30)
+pulse debug: connected locally to unix:/run/user/1000/pulse/native as client #158
+pulse debug: using protocol 30, server protocol 30
+pulse debug: adding sink 0: alsa_output.pci-0000_01_00.1.hdmi-stereo (HDA NVidia Digital Stereo (HDMI))
+pulse debug: adding sink 3: alsa_output.pci-0000_00_1f.3.analog-stereo (Built-in Audio Analog Stereo)
+core debug: using audio output module "pulse"
+core debug: keeping audio output
+core debug: Creating an input for 'shitfile.mp4'
+core debug: using sout chain=`transcode{vcodec=RV24}:smem{video-prerender-callback=4202058,video-postrender-callback=4202183,video-data=140732315363840,no-time-sync},'
+core debug: stream=`smem'
+core debug: looking for sout stream module matching "smem": 22 candidates
+core debug: set config option: sout-smem-video-prerender-callback to 4202058
+core debug: set config option: sout-smem-video-postrender-callback to 4202183
+core debug: set config option: sout-smem-video-data to 140732315363840
+core debug: set config option: sout-smem-time-sync to (null)
+core debug: using sout stream module "stream_out_smem"
+core debug: stream=`transcode'
+core debug: looking for sout stream module matching "transcode": 22 candidates
+core debug: set config option: sout-transcode-vcodec to RV24
+stream_out_transcode debug: Checking video codec mapping for RV24 got RV24 
+stream_out_transcode debug: codec video=RV24 0x0 scaling: 0.000000 0kb/s
+core debug: using sout stream module "stream_out_transcode"
+core debug: using timeshift granularity of 50 MiB, in path '/tmp'
+core debug: `file:///home/sealab/salmoncode/cascadeDetection/shitfile.mp4' gives access `file' demux `' path `/home/sealab/salmoncode/cascadeDetection/shitfile.mp4'
+core debug: specified demux `any'
+core debug: creating demux: access='file' demux='any' location='/home/sealab/salmoncode/cascadeDetection/shitfile.mp4' file='/home/sealab/salmoncode/cascadeDetection/shitfile.mp4'
+core debug: looking for access_demux module matching "file": 20 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='/home/sealab/salmoncode/cascadeDetection/shitfile.mp4', path='/home/sealab/salmoncode/cascadeDetection/shitfile.mp4'
+core debug: looking for access module matching "file": 25 candidates
+filesystem debug: opening file `/home/sealab/salmoncode/cascadeDetection/shitfile.mp4'
+core debug: using access module "filesystem"
+core debug: Using stream method for AStream*
+core debug: starting pre-buffering
+core debug: received first data after 0 ms
+core debug: pre-buffering done 1024 bytes in 0s - 142857 KiB/s
+core debug: looking for stream_filter module matching "any": 9 candidates
+core debug: no stream_filter modules matched
+core debug: looking for stream_filter module matching "record": 9 candidates
+core debug: using stream_filter module "record"
+core debug: creating demux: access='file' demux='any' location='/home/sealab/salmoncode/cascadeDetection/shitfile.mp4' file='/home/sealab/salmoncode/cascadeDetection/shitfile.mp4'
+core debug: looking for demux module matching "mp4": 66 candidates
+mp4 warning: unknown box type cenc (incompletely loaded)
+mp4 debug: added fragment moov
+mp4 debug: dumping root Box "root"
+mp4 debug: |   + ftyp size 24 offset 0
+mp4 debug: |   + moov size 4288 offset 24
+mp4 debug: |   |   + mvhd size 108 offset 32
+mp4 debug: |   |   + trak size 4129 offset 140
+mp4 debug: |   |   |   + tkhd size 92 offset 148
+mp4 debug: |   |   |   + edts size 36 offset 240
+mp4 debug: |   |   |   |   + elst size 28 offset 248
+mp4 debug: |   |   |   + mdia size 3993 offset 276
+mp4 debug: |   |   |   |   + mdhd size 32 offset 284
+mp4 debug: |   |   |   |   + hdlr size 45 offset 316
+mp4 debug: |   |   |   |   + minf size 3908 offset 361
+mp4 debug: |   |   |   |   |   + vmhd size 20 offset 369
+mp4 debug: |   |   |   |   |   + dinf size 36 offset 389
+mp4 debug: |   |   |   |   |   |   + dref size 28 offset 397
+mp4 debug: |   |   |   |   |   |   |   + url  size 12 offset 413
+mp4 debug: |   |   |   |   |   + stbl size 3844 offset 425
+mp4 debug: |   |   |   |   |   |   + stsd size 152 offset 433
+mp4 debug: |   |   |   |   |   |   |   + avc1 size 136 offset 449
+mp4 debug: |   |   |   |   |   |   |   |   + avcC size 50 offset 535
+mp4 debug: |   |   |   |   |   |   + stts size 2064 offset 585
+mp4 debug: |   |   |   |   |   |   + stss size 36 offset 2649
+mp4 debug: |   |   |   |   |   |   + stsc size 28 offset 2685
+mp4 debug: |   |   |   |   |   |   + stsz size 1536 offset 2713
+mp4 debug: |   |   |   |   |   |   + stco size 20 offset 4249
+mp4 debug: |   |   + udta size 43 offset 4269
+mp4 debug: |   |   |   + cenc size 35 offset 4277
+mp4 debug: |   + wide size 8 offset 4312
+mp4 debug: |   + mdat size 20999439 offset 4320
+mp4 debug: ISO Media file (isom) version 0.
+mp4 debug: found 1 tracks
+mp4 warning: elst box found
+mp4 debug:    - [0] duration=15119ms media time=0ms) rate=1.0
+mp4 debug: track[Id 0x1] read 1 chunk
+mp4 warning: STTS table of 256 entries
+mp4 debug: track[Id 0x1] read 379 samples length:15s
+core debug: selecting program id=0
+mp4 debug: adding track[Id 0x1] video (enable) language eng
+mp4 debug: fragment offset 24, data 4328<->21003759, duration 0
+core debug: using demux module "mp4"
+core debug: looking for a subtitle file in /home/sealab/salmoncode/cascadeDetection/
+core debug: looking for packetizer module matching "any": 23 candidates
+packetizer_h264 debug: found NAL_SPS (sps_id=0)
+packetizer_h264 debug: found NAL_PPS (pps_id=0 sps_id=0)
+packetizer_h264 debug: avcC length size=4, sps=1, pps=1
+core debug: using packetizer module "packetizer_h264"
+core debug: starting in sync mode
+core debug: looking for meta reader module matching "any": 2 candidates
+lua debug: Trying Lua scripts in /home/sealab/.local/share/vlc/lua/meta/reader
+lua debug: Trying Lua scripts in /usr/lib/vlc/lua/meta/reader
+lua debug: Trying Lua playlist script /usr/lib/vlc/lua/meta/reader/filename.luac
+lua debug: Trying Lua scripts in /usr/share/vlc/lua/meta/reader
+core debug: no meta reader modules matched
+core debug: `file:///home/sealab/salmoncode/cascadeDetection/shitfile.mp4' successfully opened
+mp4 debug: elst (0) gives 0ms (movie)-> 0ms (track)
+mp4 debug: track[Id 0x1] using Sync Sample Box (stss)
+mp4 debug: stss gives 0 --> 0 (sample number)
+core debug: Buffering 0%
+core debug: switching to async mode
+core debug: adding a new sout input (sout_input:0x7faa1001b7b0)
+stream_out_transcode debug: creating video transcoding from fcc=`h264' to fcc=`RV24'
+core debug: looking for decoder module matching "any": 42 candidates
+core debug: Buffering 0%
+core debug: Buffering 13%
+core debug: Buffering 26%
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: trying to use direct rendering
+avcodec debug: allowing 1 thread(s) for decoding
+avcodec debug: avcodec codec (H264 - MPEG-4 AVC (part 10)) started
+core debug: using decoder module "avcodec"
+core debug: looking for encoder module matching "any": 21 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: Time base for probing setted to 1/1000000
+avcodec debug: Time base set to 1/1000000
+core debug: Buffering 39%
+core debug: Buffering 53%
+core debug: Buffering 66%
+core debug: Buffering 79%
+core debug: Buffering 93%
+avcodec debug: found encoder Raw video
+core debug: using encoder module "avcodec"
+core debug: Stream buffering done (319 ms in 9 ms)
+core debug: removing module "avcodec"
+core debug: Decoder wait done in 0 ms
+avcodec debug: available hardware decoder output format 109 (vdpau)
+avcodec debug: available hardware decoder output format 53 (vaapi_vld)
+avcodec debug: available software decoder output format 12 (yuvj420p)
+core debug: looking for hw decoder module matching "any": 4 candidates
+vdpau_avcodec debug: video surface limits: 4096x4096
+vdpau_avcodec debug: decoder profile limits: level 41 mb 65536 4096x4096
+vdpau_avcodec error: decoder profile above limits: level 42 1920x1088
+core debug: no hw decoder modules matched
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+stream_out_transcode debug: decoder aspect is 1.761468:1
+stream_out_transcode debug: source pixel aspect is 0.990826:1
+stream_out_transcode debug: scaled pixel aspect is 0.990826:1
+stream_out_transcode debug: source 1920x1080, destination 1920x1080
+stream_out_transcode debug: source fps 19677/785, destination 19677/785
+stream_out_transcode: input interval 39894 (base 785)
+stream_out_transcode: output interval 39894 (base 785)
+stream_out_transcode debug: encoder aspect is 1920:1090
+core debug: looking for video filter2 module matching "any": 63 candidates
+swscale debug: 1920x1080 (1920x1090) chroma: J420 -> 1920x1080 (1920x1090) chroma: RV24 with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: Filter 'Swscale' (0x7faa10bf4278) appended to chain
+stream_out_transcode debug: destination (after video filters) 1920x1090
+core debug: looking for encoder module matching "any": 21 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: Time base for probing setted to 785/19677
+avcodec debug: Time base set to 785/19677
+avcodec debug: found encoder Raw video
+core debug: using encoder module "avcodec"
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 806788, last: 806789)
+avcodec debug: enabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (806789)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 806788, last: 806789)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (806789)
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 806788, last: 806789)
+avcodec debug: enabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (806789)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 806788, last: 806789)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (806789)
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 806788, last: 806789)
+avcodec debug: enabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (806789)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 806788, last: 806789)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (806789)
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 806788, last: 806789)
+avcodec debug: enabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (806789)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 806788, last: 806789)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (806789)
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 806788, last: 806789)
+avcodec debug: enabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (806789)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 806788, last: 806789)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (806789)
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 806788, last: 806789)
+avcodec debug: enabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (806789)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 806788, last: 806789)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (806789)
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+stream_out_transcode warning: Reseting video sync
+avcodec warning: almost fed libavcodec with a frame in the past (current: 806788, last: 806789)
+avcodec debug: enabling direct rendering
+avcodec warning: almost fed libavcodec with two frames with the same PTS (806789)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+avcodec debug: enabling direct rendering
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering

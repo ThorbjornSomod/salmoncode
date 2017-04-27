@@ -1,5 +1,5 @@
-#ifndef DETECTIONTEST_H
-#define DETECTIONTEST_H
+#ifndef CASCADEDETECTION_H
+#define CASCADEDETECTION_H
 
 /*OpenCV Object Detection Headers*/
 
@@ -32,6 +32,7 @@
 #include <stdio.h>
 #include <thread>
 #include <string.h>
+#include <mutex>
 
 /*Namespaces*/
 
@@ -45,4 +46,4 @@ using namespace std;
 void cascadeDetect(std::string video_source, std::string coidal_cascade_name, std::string head_cascade_name, std::string dorsal_cascade_name);
 
 
-#endif /*!DETECTIONTEST_H*/
+#endif /*!CASCADEDETECTION_H*/
