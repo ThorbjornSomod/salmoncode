@@ -1,7 +1,7 @@
 #ifndef CASCADEDETECTION_H
 #define CASCADEDETECTION_H
 
-/*OpenCV Object Detection Headers*/
+/*OpenCV Library Headers*/
 
 #include "opencv2/core.hpp"
 #include "opencv2/imgcodecs.hpp"
@@ -19,10 +19,6 @@
 #include "opencv2/cudaobjdetect.hpp"
 #include "opencv2/cudaimgproc.hpp"
 #include "opencv2/cudacodec.hpp"
-
-/*VLC Library Headers*/
-
-#include <vlc/vlc.h>
 
 /*System Headers*/
 
