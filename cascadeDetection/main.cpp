@@ -21,7 +21,7 @@ void* imageTest(void* voidContext){
 		
 		}
 
-		waitKey(50);
+		waitKey(15);
 
 	}
 
@@ -35,9 +35,9 @@ int main() {
 
 	// Media sources:
 
-	std::string minipod = "rtsp://admin:ral1004@192.168.2.3:2020/videoinput_1/h264_1/media.stm";
+	std::string videoSource = "rtsp://admin:ral1004@192.168.2.3:2020/videoinput_1/h264_1/media.stm";
 
-	std::string file_source = "/home/sealab/salmoncode/cascadeDetection/converted.mp4";
+	std::string fileSource = "/home/sealab/salmoncode/cascadeDetection/converted.mp4";
 
 	// Start RTSP Streaming:
 

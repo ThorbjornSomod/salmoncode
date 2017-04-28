@@ -1995,3 +1995,82 @@ core error: Failed to change zoom
 core error: Failed to set on top
 core error: Failed to change source AR
 core error: ES_OUT_RESET_PCR called
+﻿-- logger module started --
+filesystem error: cannot open file /home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/shitfile.mp4 (No such file or directory)
+core error: File reading failed
+core error: VLC could not open the file "/home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/shitfile.mp4" (No such file or directory).
+core error: open of `file:///home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/shitfile.mp4' failed
+core error: Your input can't be opened
+core error: VLC is unable to open the MRL 'file:///home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/shitfile.mp4'. Check the log for details.
+﻿-- logger module started --
+filesystem error: cannot open file /home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi (No such file or directory)
+core error: File reading failed
+core error: VLC could not open the file "/home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi" (No such file or directory).
+core error: open of `file:///home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi' failed
+core error: Your input can't be opened
+core error: VLC is unable to open the MRL 'file:///home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi'. Check the log for details.
+﻿-- logger module started --
+filesystem error: cannot open file /home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi (No such file or directory)
+core error: File reading failed
+core error: VLC could not open the file "/home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi" (No such file or directory).
+core error: open of `file:///home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi' failed
+core error: Your input can't be opened
+core error: VLC is unable to open the MRL 'file:///home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi'. Check the log for details.
+﻿-- logger module started --
+core error: ES_OUT_RESET_PCR called
+core error: Failed to change zoom
+core error: Failed to set on top
+core error: Failed to change source AR
+﻿-- logger module started --
+core error: Failed to change zoom
+core error: Failed to set on top
+core error: Failed to change source AR
+core error: ES_OUT_RESET_PCR called
+﻿-- logger module started --
+filesystem error: cannot open file /home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi (No such file or directory)
+core error: File reading failed
+core error: VLC could not open the file "/home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi" (No such file or directory).
+core error: open of `file:///home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi' failed
+core error: Your input can't be opened
+core error: VLC is unable to open the MRL 'file:///home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi'. Check the log for details.
+﻿-- logger module started --
+filesystem error: cannot open file /home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi (No such file or directory)
+core error: File reading failed
+core error: VLC could not open the file "/home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi" (No such file or directory).
+core error: open of `file:///home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi' failed
+core error: Your input can't be opened
+core error: VLC is unable to open the MRL 'file:///home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi'. Check the log for details.
+﻿-- logger module started --
+filesystem error: cannot open file /home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi (No such file or directory)
+core error: File reading failed
+core error: VLC could not open the file "/home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi" (No such file or directory).
+core error: open of `file:///home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi' failed
+core error: Your input can't be opened
+core error: VLC is unable to open the MRL 'file:///home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi'. Check the log for details.
+﻿-- logger module started --
+filesystem error: cannot open file /home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi (No such file or directory)
+core error: File reading failed
+core error: VLC could not open the file "/home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi" (No such file or directory).
+core error: open of `file:///home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi' failed
+core error: Your input can't be opened
+core error: VLC is unable to open the MRL 'file:///home/sealab/salmoncode/cascadeDetection/file///home/sealab/salmoncode/cascadeDetection/test.avi'. Check the log for details.
+﻿-- logger module started --
+core error: Failed to change zoom
+core error: Failed to set on top
+core error: Failed to change source AR
+﻿-- logger module started --
+core error: Failed to change zoom
+core error: Failed to set on top
+core error: Failed to change source AR
+core error: Failed to change zoom
+core error: Failed to change source AR
+﻿-- logger module started --
+core error: Failed to change zoom
+core error: Failed to set on top
+core error: Failed to change source AR
+﻿-- logger module started --
+core error: Failed to change zoom
+core error: Failed to set on top
+core error: Failed to change source AR
+core error: Failed to change zoom
+core error: Failed to change source AR

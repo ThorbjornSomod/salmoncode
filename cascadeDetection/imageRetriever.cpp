@@ -58,14 +58,14 @@ void* updateMatrixData(void* voidContext){
 
 	// Read a distant video stream:
 
-	media = libvlc_media_new_location(vlcInstance, "rtsp://admin:ral1004@192.168.2.3:2020/videoinput_1/h264_1/media.stm");
-	//media = libvlc_media_new_path(vlcInstance, "file///home/sealab/salmoncode/cascadeDetection/shitfile.mp4");
+	//media = libvlc_media_new_location(vlcInstance, "rtsp://admin:ral1004@192.168.2.3:2020/videoinput_1/h264_1/media.stm");
+	media = libvlc_media_new_path(vlcInstance, "/home/sealab/salmoncode/cascadeDetection/gpu_detection.avi");
+
+	// Create media player:
 
 	mp = libvlc_media_player_new_from_media(media);
 
-	libvlc_media_release(media);
-
-	//struct ctx* context = (struct ctx*)malloc(sizeof(*context));
+	// Create player context:
 
 	struct ctx* context = static_cast<struct ctx*>(voidContext);
 
@@ -89,7 +89,8 @@ void* updateMatrixData(void* voidContext){
 		sleep(100);
 	
 	}
-
+	
+	libvlc_media_release(media);
 	libvlc_media_player_stop(mp);
 	libvlc_media_player_release(mp);
 	libvlc_release(vlcInstance);
