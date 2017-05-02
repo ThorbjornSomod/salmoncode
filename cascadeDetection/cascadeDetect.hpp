@@ -30,6 +30,10 @@
 #include <string.h>
 #include <mutex>
 
+/*Datastructures*/
+
+#include "./types.hpp"
+
 /*Namespaces*/
 
 using namespace cv;
@@ -39,7 +43,7 @@ using namespace std;
 
 /*Functions*/
 
-void cascadeDetect(std::string video_source, std::string coidal_cascade_name, std::string head_cascade_name, std::string dorsal_cascade_name);
+void* cascadeDetect(void* voidContext);
 
 
 #endif /*!CASCADEDETECTION_H*/

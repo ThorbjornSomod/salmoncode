@@ -2,6 +2,16 @@
 
 vector<Rect> multiScaleDetection(Mat src, Size minSize, Size maxSize, double scaling, int stride){
 
+	// Setting detection parameters:
+
+	Size minSize = Size(30, 30);
+
+	Size maxSize;
+
+	double scaling = 1.1;
+
+	int stride = 4;
+
 	// Initialize SVM model:
 
 	const char *MODEL_FILE = "trainSVM.model";

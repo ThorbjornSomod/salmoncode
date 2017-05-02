@@ -1,6 +1,6 @@
 #include "cascadeDetect.hpp"
 
-void cascadeDetect(std::string video_source, std::string coidal_cascade_name, std::string head_cascade_name, std::string dorsal_cascade_name) {
+void* cascadeDetect(void* voidContext) {
 
 	// Toggle detections:
 
@@ -10,48 +10,41 @@ void cascadeDetect(std::string video_source, std::string coidal_cascade_name, st
 
 	// Load cascades:
 
-	Ptr<cv::cuda::CascadeClassifier> coidal_cascade = cv::cuda::CascadeClassifier::create(coidal_cascade_name);
-	Ptr<cv::cuda::CascadeClassifier> head_cascade = cv::cuda::CascadeClassifier::create(head_cascade_name);
-	Ptr<cv::cuda::CascadeClassifier> dorsal_cascade = cv::cuda::CascadeClassifier::create(dorsal_cascade_name);
+	Ptr<cv::cuda::CascadeClassifier> coidal_cascade = cv::cuda::CascadeClassifier::create("current_coidal.xml");
+	Ptr<cv::cuda::CascadeClassifier> head_cascade = cv::cuda::CascadeClassifier::create("current_head.xml");
+	Ptr<cv::cuda::CascadeClassifier> dorsal_cascade = cv::cuda::CascadeClassifier::create("current_dorsal.xml");
 
 	// Choose detection parameters:
 
-	coidal_cascade->setMinNeighbors(2);
+	coidal_cascade->setMinNeighbors(5);
 	head_cascade->setMinNeighbors(2);
 	dorsal_cascade->setMinNeighbors(2);
 
-	// Choose video input:
+	// Toggle writer:
 
-	cv::VideoCapture reader(video_source);
+	VideoWriter writer = VideoWriter("libvlc_out.avi", CV_FOURCC('X', 'V', 'I', 'D'), 15, Size(1920, 1080), true);
 
-	// Toggle writing to file:
-	
-	//cv::VideoWriter writer("gpu_detection.avi", CV_FOURCC('X', 'V', 'I', 'D'), 25, cv::Size(1920, 1080), true);
+	// Initializing variables:
 
-	if (!reader.isOpened()) {
-
-		//std::cout << "Camera could not be opened." << std::endl;
-		std:: cout << "File could not be opened." << std::endl;
-
-	}
+	struct ctx* context = static_cast<struct ctx*>(voidContext);
 
 	cv::Mat cpu_frame;
 
-	cv::cuda::GpuMat gpu_show;
+	//cv::namedWindow("Detections", WINDOW_OPENGL);
 
-	cv::namedWindow("Detections", WINDOW_OPENGL);
+	//cv::resizeWindow("Detections", 1920, 1080);
 
-	cv::resizeWindow("Detections", 1920, 1080);
+	int i = 0;
 
-	for (;;) {
+	for(;;){
+		
+		while(i < 5){i++;}
 
-		reader >> cpu_frame;
+		context->imagemutex->lock();
 
-		if(cpu_frame.empty()){
+		cpu_frame = *context->image;
 
-			break;
-
-		}
+		context->imagemutex->unlock();
 
 		cv::cuda::GpuMat gpu_frame(cpu_frame);
 
@@ -100,7 +93,7 @@ void cascadeDetect(std::string video_source, std::string coidal_cascade_name, st
 			for(int i = 0; i < static_cast<int>(fish_heads.size()); i++){
 
 				cv::rectangle(cpu_frame, fish_heads[i], cv::Scalar(70, 212, 37));
-	
+
 			}
 		}
 
@@ -122,23 +115,18 @@ void cascadeDetect(std::string video_source, std::string coidal_cascade_name, st
 			for(int i = 0; i < static_cast<int>(dorsal_fins.size()); i++){
 
 				cv::rectangle(cpu_frame, dorsal_fins[i], cv::Scalar(181, 38, 213));
-
+				
 			}
 		}
 
-		//writer.write(cpu_frame);
+		writer.write(cpu_frame);
 
-		gpu_show.upload(cpu_frame);
-
-		cv::imshow("Detections", gpu_show);
+		cv::imshow("Detections", cpu_frame);	
 
 		gpu_frame.release();
 		objbuf.release();
 
-		if ((char)27 == (char)waitKey(10)) {
-
-			break;
-
-		}
+		waitKey(15);
+	
 	}
 }

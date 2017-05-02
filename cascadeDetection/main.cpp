@@ -7,6 +7,8 @@ void* imageTest(void* voidContext){
 	
 	int i = 0;
 
+	Mat show;
+
 	while(true){
 
 		i++;
@@ -15,9 +17,11 @@ void* imageTest(void* voidContext){
 
 		context->imagemutex->lock();
 
-		imshow("Display", *context->image);
+		show = *context->image;
 
 		context->imagemutex->unlock();
+
+		imshow("Detections", show);
 		
 		}
 
@@ -31,33 +35,27 @@ void* imageTest(void* voidContext){
 
 int main() {
 
+	// Intializing context:
+
 	struct ctx* context = (struct ctx*)malloc(sizeof(*context));
-
-	// Media sources:
-
-	std::string videoSource = "rtsp://admin:ral1004@192.168.2.3:2020/videoinput_1/h264_1/media.stm";
-
-	std::string fileSource = "/home/sealab/salmoncode/cascadeDetection/converted.mp4";
 
 	// Start RTSP Streaming:
 
 	pthread_t imageRetrieve;
-	pthread_t imageTester;
+	//pthread_t imageTester;
+	pthread_t cascadeDetection;
 
 	pthread_create(&imageRetrieve, NULL, updateMatrixData, static_cast<void*>(context));
 
-	usleep(1000000);
+	usleep(100000);
 
-	pthread_create(&imageTester, NULL, imageTest, static_cast<void*>(context));
-
-	//imshow("Display", *context->image);
+	//pthread_create(&imageTester, NULL, imageTest, static_cast<void*>(context)); 
+	
+	pthread_create(&cascadeDetection, NULL, cascadeDetect, static_cast<void*>(context));
 
 	pthread_join(imageRetrieve, NULL);
-	pthread_join(imageTester, NULL);
-
-	// Detection using LBP Cascade Classifier:
-
-	//cascadeDetect(file_source, "current_coidal.xml", "current_head.xml", "current_dorsal.xml");
+	//pthread_join(imageTester, NULL);
+	pthread_join(cascadeDetection, NULL);
 
 	return 0;
 
