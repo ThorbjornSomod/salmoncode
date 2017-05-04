@@ -1,14 +1,22 @@
 #include "objectDetect.hpp"
 
-vector<Rect> multiScaleDetection(Mat src, Size minSize, Size maxSize, double scaling, int stride){
+
+
+vector<Rect> multiScaleDetection(Mat src){
+
+	// Toggle Gaussian blurring:
+
+	bool gaussianBlur = 0;
 
 	// Setting detection parameters:
 
-	Size minSize = Size(30, 30);
+	Mat window;
 
-	Size maxSize;
+	window.rows = 30;
 
-	double scaling = 1.1;
+	window.cols = 30;
+
+	double scaling = 0.5;
 
 	int stride = 4;
 
@@ -24,19 +32,18 @@ vector<Rect> multiScaleDetection(Mat src, Size minSize, Size maxSize, double sca
 	
 	}
 
-	// Initialize window size:
+	// Initialize variables:
 
-	Size windowSize = minSize;
-	bool rowCheck, colCheck;
 	Rect roi;
 	Mat imageRoi;
 	Mat preProcessed;
-
 	vector<Rect> detections;
 	
-	// While the sliding window is not larger than the max window size:
+	// Create the image pyramid:
 
-	while(windowSize.height < maxSize.height && windowSize.width < maxSize.width){
+	vector<Mat> imagePyramid = constructImagePyramid(src, window, scaling, gaussianBlur);
+
+	/*while(windowSize.height < maxSize.height && windowSize.width < maxSize.width){
 
 		rowCheck = false;
 		colCheck = false;
@@ -95,7 +102,7 @@ vector<Rect> multiScaleDetection(Mat src, Size minSize, Size maxSize, double sca
 		windowSize.height = windowSize.height * scaling;
 		windowSize.width = windowSize.width * scaling;
 		
-	}
+	}*/
 
 	return detections;
 	
@@ -113,6 +120,38 @@ Mat preProcessImage(Mat src, Size outputDims){
 
 	return dst;
 
+}
+
+vector<Mat>constructImagePyramid(Mat src, Mat window, double scaling, bool gaussianBlur){
+
+	Mat tmp = src;
+	
+	vector<Mat> imagePyramid;
+
+	int i = 0;
+
+	while(window.rows < tmp.rows && window.cols < tmp.cols){
+
+		std::string name = "/home/sealab/salmoncode/svmDetection/pyramid/imagePyramidLevel-" + to_string(i) + ".png";
+
+		imwrite(name, tmp);
+
+		imagePyramid.push_back(tmp);
+
+		cv::resize(tmp, tmp, Size(), scaling, scaling, INTER_AREA);
+
+		if(gaussianBlur){
+
+			cv::GaussianBlur(tmp, tmp, Size(5,5), 0, 0, BORDER_DEFAULT);
+
+		}
+
+		i++;
+
+	}
+
+	return imagePyramid;
+	
 }
 
 int svmDetect(vector<double> featureVector, struct svm_model *SVMModel){

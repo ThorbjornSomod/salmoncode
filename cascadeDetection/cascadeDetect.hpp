@@ -10,7 +10,6 @@
 #include "opencv2/highgui.hpp"
 #include "opencv2/video.hpp"
 
-#include "opencv2/freetype.hpp"
 #include "opencv2/features2d.hpp"
 #include "opencv2/xfeatures2d.hpp"
 #include "opencv2/objdetect.hpp"
@@ -29,6 +28,7 @@
 #include <thread>
 #include <string.h>
 #include <mutex>
+#include <unistd.h>
 
 /*Datastructures*/
 
@@ -43,7 +43,6 @@ using namespace std;
 
 /*Functions*/
 
-void* cascadeDetect(void* voidContext);
-
+void* cascadeDetect(ctx* context);
 
 #endif /*!CASCADEDETECTION_H*/

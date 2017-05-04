@@ -1,61 +1,28 @@
 #include "cascadeDetect.hpp"
 #include "imageRetriever.hpp"
 
-void* imageTest(void* voidContext){
-	
-	struct ctx* context = static_cast<struct ctx*>(voidContext);
-	
-	int i = 0;
-
-	Mat show;
-
-	while(true){
-
-		i++;
-		
-		if (i > 5) {
-
-		context->imagemutex->lock();
-
-		show = *context->image;
-
-		context->imagemutex->unlock();
-
-		imshow("Detections", show);
-		
-		}
-
-		waitKey(15);
-
-	}
-
-	return NULL;
-
-}
-
 int main() {
-
-	// Intializing context:
 
 	struct ctx* context = (struct ctx*)malloc(sizeof(*context));
 
-	// Start RTSP Streaming:
+	// Media sources:
 
-	pthread_t imageRetrieve;
-	//pthread_t imageTester;
-	pthread_t cascadeDetection;
+	const char* streamSource = "rtsp://admin:ral1004@192.168.2.3:2020/videoinput_1/h264_1/media.stm";
 
-	pthread_create(&imageRetrieve, NULL, updateMatrixData, static_cast<void*>(context));
+	const char* fileSource = "file:///home/sealab/svmlearner/videos/testing.mp4";
 
-	usleep(100000);
+	// Start videofeed:
 
-	//pthread_create(&imageTester, NULL, imageTest, static_cast<void*>(context)); 
-	
-	pthread_create(&cascadeDetection, NULL, cascadeDetect, static_cast<void*>(context));
+	std::thread imageRetriever(updateMatrixData, context, fileSource);
 
-	pthread_join(imageRetrieve, NULL);
-	//pthread_join(imageTester, NULL);
-	pthread_join(cascadeDetection, NULL);
+	// Detection using LBP Cascade Classifier:
+
+	std::thread cascadeDetection(cascadeDetect, context);
+
+	// Join threads:
+
+	imageRetriever.join();
+	cascadeDetection.join();
 
 	return 0;
 

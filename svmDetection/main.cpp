@@ -1,15 +1,28 @@
+#include "imageRetriever.hpp"
 #include "objectDetect.hpp"
 #include "lbp.hpp"
 
 int main(){
 
-	//printAvgDims("/media/sealab/My Passport/fish_parts/coidal_fins");
+	struct ctx* context = (struct ctx*)malloc(sizeof(*context));
 
-	//printLargestDims("/media/sealab/My Passport/fish_parts/coidal_fins");
+	// Media sources:
 
-	cout << "Heisann" << endl;
+	const char* streamSource = "rtsp://admin:ral1004@192.168.2.3:2020/videoinput_1/h264_1/media.stm";
 
-	createSVMTrainingFile("/home/sealab/salmoncode/svmDetection/tmp/", "testSVM", 1, 5, 1, 8, "hf", true);
+	const char* fileSource = "file:///home/sealab/svmlearner/videos/testing.mp4";
+
+	//std::thread imageRetriever(updateMatrixData, context, fileSource);
+
+	// Join threads:
+
+	//imageRetriever.join();
+
+	// TESTS:
+
+	Mat img = imread("kitty.jpg", IMREAD_UNCHANGED);
+
+	vector<Rect> some = multiScaleDetection(img);
 
 	return 0;
 

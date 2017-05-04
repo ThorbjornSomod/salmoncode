@@ -31,7 +31,7 @@ void unlock(void *data, void *id, void *const *p_pixels){
 
 }
 
-void* updateMatrixData(void* voidContext){
+void* updateMatrixData(ctx* context, const char* source){
 
 	// VLC pointers:
 
@@ -43,34 +43,28 @@ void* updateMatrixData(void* voidContext){
 
 	vlcInstance = libvlc_new(0, NULL);
 
-	// Read a distant video stream:
+	// Read a distant video source:
 
-	//const char* source = "rtsp://admin:ral1004@192.168.2.3:2020/videoinput_1/h264_1/media.stm";
-
-	const char* source = "/home/sealab/svmlearner/videos/testing.mp4";
-
-	media = libvlc_media_new_path(vlcInstance, source);
+	media = libvlc_media_new_location(vlcInstance, source);
 
 	// Create media player:
 
 	mp = libvlc_media_player_new_from_media(media);
 
-	// Create player context:
-
-	struct ctx* context = static_cast<struct ctx*>(voidContext);
+	// Define player context:
 
 	context->imagemutex = new std::mutex();	
 	context->image = new Mat(VIDEO_HEIGHT, VIDEO_WIDTH, CV_8UC3);
 	context->pixels = (unsigned char*)context->image->data; 
-  
-	// Show blank image:
 
-	imshow("Detections", *context->image);
+	// Define callback:
 
 	libvlc_video_set_callbacks(mp, lock, unlock, display, context);
 	libvlc_video_set_format(mp, "RV24", VIDEO_WIDTH, VIDEO_HEIGHT, VIDEO_WIDTH * 24 / 8); // Pitch = Width * BitsPerPixel / 8
 
 	int key = 0;
+
+	// Play videoplayer:
 
 	libvlc_media_player_play(mp);	
 

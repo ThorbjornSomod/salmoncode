@@ -39,6 +39,10 @@
 
 #include "svm.h"
 
+/*Datastructures*/
+
+#include "./types.hpp"
+
 /*Namespaces*/
 
 using namespace cv;
@@ -48,7 +52,8 @@ using namespace std;
 
 /*Functions*/
 
-vector<Rect> multiScaleDetection(Mat src, Size minSize, Size maxSize, double scaling, int stride);
+vector<Mat> constructImagePyramid(Mat src, Mat window, double scaling, bool gaussianBlur);
+vector<Rect> multiScaleDetection(Mat src);
 int svmDetect(vector<double> featureVector, struct svm_model *SVMModel);
 Mat preProcessImage(Mat src, Size outputDims);
 

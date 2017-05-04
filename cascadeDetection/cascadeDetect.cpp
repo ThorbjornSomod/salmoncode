@@ -1,12 +1,14 @@
 #include "cascadeDetect.hpp"
 
-void* cascadeDetect(void* voidContext) {
+void* cascadeDetect(ctx* context) {
+
+	sleep(0.5);
 
 	// Toggle detections:
 
 	bool detectCoidals = 1;
-	bool detectHeads = 1;
-	bool detectDorsals = 1;
+	bool detectHeads = 0;
+	bool detectDorsals = 0;
 
 	// Load cascades:
 
@@ -22,47 +24,47 @@ void* cascadeDetect(void* voidContext) {
 
 	// Toggle writer:
 
-	VideoWriter writer = VideoWriter("libvlc_out.avi", CV_FOURCC('X', 'V', 'I', 'D'), 15, Size(1920, 1080), true);
+	//VideoWriter writer = VideoWriter("libvlc_out.avi", CV_FOURCC('X', 'V', 'I', 'D'), 15, Size(1920, 1080), true);
 
 	// Initializing variables:
 
-	struct ctx* context = static_cast<struct ctx*>(voidContext);
+	cv::Mat cpuFrame;
 
-	cv::Mat cpu_frame;
+	Mat tmp;
 
-	//cv::namedWindow("Detections", WINDOW_OPENGL);
+	cv::cuda::GpuMat gpuFrame;
 
-	//cv::resizeWindow("Detections", 1920, 1080);
+	cv::cuda::GpuMat objbuf;
 
-	int i = 0;
+	while(true){
 
-	for(;;){
-		
-		while(i < 5){i++;}
+		// Aquire image data:
 
 		context->imagemutex->lock();
 
-		cpu_frame = *context->image;
+		tmp = *context->image;	
+
+		cpuFrame = tmp.clone();
 
 		context->imagemutex->unlock();
 
-		cv::cuda::GpuMat gpu_frame(cpu_frame);
+		gpuFrame.upload(cpuFrame);
 
-		cv::cuda::GpuMat objbuf;
+		cv::cuda::cvtColor(gpuFrame, gpuFrame, CV_BGR2GRAY);
 
-		cv::cuda::cvtColor(gpu_frame, gpu_frame, CV_BGR2GRAY);
+		// Initialize ROI vectors:
 
-		std::vector<Rect> fish_heads;
-		std::vector<Rect> coidal_fins;
-		std::vector<Rect> dorsal_fins;
+		std::vector<Rect> fishHeads;
+		std::vector<Rect> coidalFins;
+		std::vector<Rect> dorsalFins;
 
 		// Head detection:
 
 		if(detectHeads){
 
-			head_cascade->detectMultiScale(gpu_frame, objbuf);
+			head_cascade->detectMultiScale(gpuFrame, objbuf);
 			
-			head_cascade->convert(objbuf, fish_heads);
+			head_cascade->convert(objbuf, fishHeads);
 
 		}
 
@@ -70,9 +72,9 @@ void* cascadeDetect(void* voidContext) {
 
 		if(detectCoidals){
 
-			coidal_cascade->detectMultiScale(gpu_frame, objbuf);
+			coidal_cascade->detectMultiScale(gpuFrame, objbuf);
 
-			coidal_cascade->convert(objbuf, coidal_fins);
+			coidal_cascade->convert(objbuf, coidalFins);
 
 		}
 
@@ -80,53 +82,58 @@ void* cascadeDetect(void* voidContext) {
 
 		if(detectDorsals){
 
-			dorsal_cascade->detectMultiScale(gpu_frame, objbuf);
+			dorsal_cascade->detectMultiScale(gpuFrame, objbuf);
 
-			dorsal_cascade->convert(objbuf, dorsal_fins);
+			dorsal_cascade->convert(objbuf, dorsalFins);
 
 		}
 
 		// Draw fish heads:
 
-		if(!fish_heads.empty()){
+		if(!fishHeads.empty() && detectHeads){
 
-			for(int i = 0; i < static_cast<int>(fish_heads.size()); i++){
+			for(int i = 0; i < static_cast<int>(fishHeads.size()); i++){
 
-				cv::rectangle(cpu_frame, fish_heads[i], cv::Scalar(70, 212, 37));
+				cv::rectangle(cpuFrame, fishHeads[i], cv::Scalar(70, 212, 37));
 
 			}
 		}
 
 		// Draw coidal fins:
 
-		if (!coidal_fins.empty()){ 
+		if (!coidalFins.empty() && detectCoidals){ 
 
-			for(int i = 0; i < static_cast<int>(coidal_fins.size()); i++){
+			for(int i = 0; i < static_cast<int>(coidalFins.size()); i++){
 
-				cv::rectangle(cpu_frame, coidal_fins[i], cv::Scalar(49, 37, 212));
+				cv::rectangle(cpuFrame, coidalFins[i], cv::Scalar(49, 37, 212));
 
 			}
 		}
 
 		// Draw dorsal fins:
 
-		if(!dorsal_fins.empty()){
+		if(!dorsalFins.empty() && detectDorsals){
 
-			for(int i = 0; i < static_cast<int>(dorsal_fins.size()); i++){
+			for(int i = 0; i < static_cast<int>(dorsalFins.size()); i++){
 
-				cv::rectangle(cpu_frame, dorsal_fins[i], cv::Scalar(181, 38, 213));
+				cv::rectangle(cpuFrame, dorsalFins[i], cv::Scalar(181, 38, 213));
 				
 			}
 		}
+		
+		// Toggle writer:
 
-		writer.write(cpu_frame);
+		//writer.write(cpuFrame);
 
-		cv::imshow("Detections", cpu_frame);	
+		// Show results:
 
-		gpu_frame.release();
-		objbuf.release();
+		imshow("Display", cpuFrame);	
 
-		waitKey(15);
+		waitKey(3);
 	
 	}
+
+	gpuFrame.release();
+	objbuf.release();	
+
 }
