@@ -1,52 +1,5 @@
 #include "objectDetect.hpp"
 
-// Implementation of the multi-scale detection algorithm:
-
-vector<Rect> multiScaleDetection(Mat src){
-
-	// Toggle Gaussian blurring:
-
-	bool gaussianBlur = 0;
-
-	// Setting detection parameters:
-
-	Size windowSize(30,30);
-
-	double scaling = 0.5;
-
-	int stride = 10;
-
-	// Initialize SVM model:
-
-	const char *MODEL_FILE = "trainSVM.model";
-
-	struct svm_model *SVMModel;
-
-	if((SVMModel = svm_load_model(MODEL_FILE)) == 0){
-
-		fprintf(stderr, "Can't load SVM model. %s", MODEL_FILE);
-	
-	}
-
-	// Initialize variables:
-
-	Rect roi;
-	Mat imageRoi;
-	Mat preProcessed;
-	vector<Rect> detections;
-	
-	// Create the image pyramid:
-
-	vector<Mat> imagePyramid = constructImagePyramid(src, windowSize, scaling, gaussianBlur);
-
-	// Acquire detections:
-
-	vector<vector<Rect>> test = slidingWindowDetection(imagePyramid, windowSize, scaling, stride, SVMModel);
-
-	return detections;
-	
-}
-
 // Implementation of the image pyramid:
 
 vector<Mat>constructImagePyramid(Mat src, Size windowSize, double scaling, bool gaussianBlur){
@@ -234,3 +187,52 @@ int svmDetect(vector<double> featureVector, struct svm_model *SVMModel){
 	return prediction;
 
 }
+
+vector<vector<Rect>> nonMaxSuppresion(vector<vector<Rect>>){
+
+	vector<vector<Rect>> detections;
+
+	return detections;	
+
+}
+
+// Implementation of the multi-scale detection algorithm:
+
+vector<vector<Rect>> multiScaleDetection(Mat src){
+
+	// Toggle Gaussian blurring:
+
+	bool gaussianBlur = 0;
+
+	// Setting detection parameters:
+
+	Size windowSize(30,30);
+
+	double scaling = 0.5;
+
+	int stride = 10;
+
+	// Initialize SVM model:
+
+	const char *MODEL_FILE = "trainSVM.model";
+
+	struct svm_model *SVMModel;
+
+	if((SVMModel = svm_load_model(MODEL_FILE)) == 0){
+
+		fprintf(stderr, "Can't load SVM model. %s", MODEL_FILE);
+	
+	}
+	
+	// Create the image pyramid:
+
+	vector<Mat> imagePyramid = constructImagePyramid(src, windowSize, scaling, gaussianBlur);
+
+	// Acquire detections:
+
+	vector<vector<Rect>> detections = slidingWindowDetection(imagePyramid, windowSize, scaling, stride, SVMModel);
+
+	return detections;
+	
+}
+

@@ -62,7 +62,8 @@ using namespace std;
 vector<Mat> constructImagePyramid(Mat src, Size windowSize, double scaling, bool gaussianBlur);
 vector<vector<Rect>> slidingWindowDetection(vector<Mat> imagePyramid, Size window, double scaling, int stride, struct svm_model* SVMModel);
 int svmDetect(vector<double> featureVector, struct svm_model* SVMModel);
-vector<Rect> multiScaleDetection(Mat src);
+vector<vector<Rect>> nonMaxSuppression(vector<vector<Rect>> detections);
+vector<vector<Rect>> multiScaleDetection(Mat src);
 
 
 #endif /*!OBJECTDETECT_H*/
