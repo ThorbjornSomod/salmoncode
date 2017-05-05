@@ -22,7 +22,7 @@ int main(){
 
 	Mat img = imread("kitty.jpg", IMREAD_UNCHANGED);
 
-	vector<Rect> some = multiScaleDetection(img);
+	//vector<Rect> some = multiScaleDetection(img);
 
 	return 0;
 

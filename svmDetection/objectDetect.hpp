@@ -11,6 +11,7 @@
 #include <thread>
 #include <string.h>
 #include <vector>
+#include <unistd.h>
 
 /*OpenCV Object Detection Headers*/
 
@@ -50,12 +51,18 @@ using namespace cv::xfeatures2d;
 using namespace cuda;
 using namespace std;
 
+// Defines:
+
+#define HEAD	1
+#define DORSAL	2
+#define COIDAL	3
+
 /*Functions*/
 
-vector<Mat> constructImagePyramid(Mat src, Mat window, double scaling, bool gaussianBlur);
+vector<Mat> constructImagePyramid(Mat src, Size windowSize, double scaling, bool gaussianBlur);
+vector<vector<Rect>> slidingWindowDetection(vector<Mat> imagePyramid, Size window, double scaling, int stride, struct svm_model* SVMModel);
+int svmDetect(vector<double> featureVector, struct svm_model* SVMModel);
 vector<Rect> multiScaleDetection(Mat src);
-int svmDetect(vector<double> featureVector, struct svm_model *SVMModel);
-Mat preProcessImage(Mat src, Size outputDims);
 
 
 #endif /*!OBJECTDETECT_H*/

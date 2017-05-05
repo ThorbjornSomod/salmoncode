@@ -1,6 +1,6 @@
 #include "objectDetect.hpp"
 
-
+// Implementation of the multi-scale detection algorithm:
 
 vector<Rect> multiScaleDetection(Mat src){
 
@@ -10,15 +10,11 @@ vector<Rect> multiScaleDetection(Mat src){
 
 	// Setting detection parameters:
 
-	Mat window;
-
-	window.rows = 30;
-
-	window.cols = 30;
+	Size windowSize(30,30);
 
 	double scaling = 0.5;
 
-	int stride = 4;
+	int stride = 10;
 
 	// Initialize SVM model:
 
@@ -41,88 +37,19 @@ vector<Rect> multiScaleDetection(Mat src){
 	
 	// Create the image pyramid:
 
-	vector<Mat> imagePyramid = constructImagePyramid(src, window, scaling, gaussianBlur);
+	vector<Mat> imagePyramid = constructImagePyramid(src, windowSize, scaling, gaussianBlur);
 
-	/*while(windowSize.height < maxSize.height && windowSize.width < maxSize.width){
+	// Acquire detections:
 
-		rowCheck = false;
-		colCheck = false;
-
-		for(int r = 0; r < src.rows; r += stride){
-			
-			// If the window height is larger than the remaining image height: 		
-
-			if(r + windowSize.height > src.rows){
-
-				r = src.rows - windowSize.height;
-				rowCheck = true;
-
-			}
-
-			for(int c = 0; c < src.cols; c += stride){
-				
-				// If the window width is larger than the remaining image width:
-
-				if(c + windowSize.width > src.cols){
-
-					c = src.cols - windowSize.width;
-					colCheck = true;
-
-				}
-
-				// Crop out the region of interest:
-
-				roi = Rect(c, r, windowSize.width, windowSize.height);
-				imageRoi = src(roi);
-				
-				// Pre-process region:
-
-				preProcessed  = preProcessImage(imageRoi, minSize); 	
-			
-				vector<double> featureVector = extractLBPFeatureVector(preProcessed, 5, 1, 8, "hf", true);
-	
-				// If region contains a detection, append to detections:
-				
-				if(svmDetect(featureVector, SVMModel) > 0){
-
-					detections.push_back(roi);
-
-				}
-
-				if(rowCheck && colCheck){
-
-					break;				
-	
-				} 	
-			}
-		}
-
-		// Update window size to new scale:
-
-		windowSize.height = windowSize.height * scaling;
-		windowSize.width = windowSize.width * scaling;
-		
-	}*/
+	vector<vector<Rect>> test = slidingWindowDetection(imagePyramid, windowSize, scaling, stride, SVMModel);
 
 	return detections;
 	
 }
 
-Mat preProcessImage(Mat src, Size outputDims){
+// Implementation of the image pyramid:
 
-	Mat dst;
-
-	cv::resize(src, dst, outputDims, 0, 0, INTER_AREA);
-
-	cv::equalizeHist(dst, dst);
-
-	cv::GaussianBlur(dst, dst, Size(5,5), 0, 0, BORDER_DEFAULT);
-
-	return dst;
-
-}
-
-vector<Mat>constructImagePyramid(Mat src, Mat window, double scaling, bool gaussianBlur){
+vector<Mat>constructImagePyramid(Mat src, Size windowSize, double scaling, bool gaussianBlur){
 
 	Mat tmp = src;
 	
@@ -130,11 +57,11 @@ vector<Mat>constructImagePyramid(Mat src, Mat window, double scaling, bool gauss
 
 	int i = 0;
 
-	while(window.rows < tmp.rows && window.cols < tmp.cols){
+	while(windowSize.height < tmp.rows && windowSize.width < tmp.cols){
 
-		std::string name = "/home/sealab/salmoncode/svmDetection/pyramid/imagePyramidLevel-" + to_string(i) + ".png";
+		//std::string name = "/home/sealab/salmoncode/svmDetection/pyramid/imagePyramidLevel-" + to_string(i) + ".png";
 
-		imwrite(name, tmp);
+		//imwrite(name, tmp);
 
 		imagePyramid.push_back(tmp);
 
@@ -152,6 +79,137 @@ vector<Mat>constructImagePyramid(Mat src, Mat window, double scaling, bool gauss
 
 	return imagePyramid;
 	
+}
+
+// Implementation of the sliding window function:
+
+vector<vector<Rect>> slidingWindowDetection(vector<Mat> imagePyramid, Size windowSize, double scaling, int stride, struct svm_model* SVMModel){
+
+	// Initialize detection containers:
+
+	vector<vector<Rect>> detections;
+
+	vector<Rect> headDetections;
+	vector<Rect> coidalDetections;
+	vector<Rect> dorsalDetections;
+
+	// Initialize variables:
+
+	bool rowCheck;
+	bool colCheck;
+
+	Mat image;
+	Mat roiImage;
+	Rect roiRect;
+
+	int classCheck;
+
+	double internalScaling = scaling;
+
+	std::vector<Mat>::iterator it;
+
+	// For each intermediate image in the image pyramid:
+
+	for(it = imagePyramid.begin(); it != imagePyramid.end(); ++it){
+
+		image = *it; 
+
+		rowCheck = false;
+		colCheck = false;
+
+		for(int r = 0; r < image.rows; r += stride){
+
+			// If the window height is larger than the remaining image height:
+
+			if(r + windowSize.height > image.rows){
+
+				r = image.rows - windowSize.height;
+				rowCheck = true;
+
+			}
+
+			for(int c = 0; c < image.cols; c += stride){
+
+				// If the window width is larger than the remaining image width:
+
+				if(c + windowSize.width > image.cols){
+
+					c = image.cols - windowSize.width;
+					colCheck = true;
+
+				}
+
+				// Isolate the region of interest we want to check:
+			
+				roiRect = Rect(c, r, windowSize.width, windowSize.height);
+				roiImage = image(roiRect);
+
+				// Extract the LBP Feature Vector:
+
+				vector<double> featureVector = extractLBPFeatureVector(roiImage, 5, 1, 8, "hf", true);
+
+				// Check if the area contains an object in a sought class:
+
+				classCheck = svmDetect(featureVector, SVMModel);
+
+				if(classCheck != 0){
+
+					roiRect.x = floor(roiRect.x * (1 / internalScaling));
+					roiRect.y = floor(roiRect.y * (1 / internalScaling));
+					roiRect.width = floor(roiRect.width * (1 / internalScaling));
+					roiRect.height = floor(roiRect.height * (1 / internalScaling));
+
+				}
+
+				switch(classCheck){
+
+					case HEAD:
+						
+						headDetections.push_back(roiRect);
+
+						break;
+
+					case DORSAL:
+
+						dorsalDetections.push_back(roiRect);
+
+						break;
+
+					case COIDAL:
+
+						coidalDetections.push_back(roiRect);
+					
+					default:
+
+						break;
+
+				}	
+			
+				if(colCheck){
+
+					colCheck = false;
+					break;
+
+				}
+			}
+
+			if(rowCheck){
+
+				break;
+
+			}
+		}
+
+		internalScaling = internalScaling*scaling;
+
+	}
+
+	detections.push_back(headDetections);
+	detections.push_back(dorsalDetections);
+	detections.push_back(coidalDetections);
+
+	return detections;
+
 }
 
 int svmDetect(vector<double> featureVector, struct svm_model *SVMModel){
