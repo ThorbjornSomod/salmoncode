@@ -36,7 +36,7 @@ vector<Mat>constructImagePyramid(Mat src, Size windowSize, double scaling, bool 
 
 // Implementation of the sliding window function:
 
-vector<vector<Rect>> slidingWindowDetection(vector<Mat> imagePyramid, Size windowSize, double scaling, int stride, struct svm_model* SVMModel){
+vector<vector<Rect>> slidingWindowDetection(vector<Mat> imagePyramid, Size windowSize, double scaling, int stride, bool nonMaxSuppression, struct svm_model* SVMModel){
 
 	// Initialize detection containers:
 
@@ -119,18 +119,17 @@ vector<vector<Rect>> slidingWindowDetection(vector<Mat> imagePyramid, Size windo
 					case HEAD:
 						
 						headDetections.push_back(roiRect);
-
 						break;
 
 					case DORSAL:
 
 						dorsalDetections.push_back(roiRect);
-
 						break;
 
 					case COIDAL:
 
 						coidalDetections.push_back(roiRect);
+						break;
 					
 					default:
 
@@ -188,11 +187,87 @@ int svmDetect(vector<double> featureVector, struct svm_model *SVMModel){
 
 }
 
-vector<vector<Rect>> nonMaxSuppresion(vector<vector<Rect>>){
+// Implementation of non maximum suppression:
 
-	vector<vector<Rect>> detections;
+vector<vector<Rect>> nonMaxSuppression(vector<vector<Rect>> detections, double overlapThresh){
 
-	return detections;	
+	vector<vector<Rect>> processedDetections;
+	vector<Rect> classDetections;
+	vector<Rect> cluster;
+
+	for(int i = 0; i < detections.size(); i++){
+
+		classDetections.clear();
+
+		while(detections[i].size() > 1){
+
+			cluster.clear();
+
+			for(int j = 1; j < detections[i].size(); j++){
+
+				cout << overlapCalc(detections[i][0], detections[i][j]) << endl;
+
+				if(overlapCalc(detections[i][0], detections[i][j]) > overlapThresh){
+
+					cluster.push_back(detections[i][j]);
+
+					detections[i].erase(detections[i].begin() + j);
+
+					j -= 1;
+
+				}
+			}
+
+			cluster.push_back(detections[i][0]);
+	
+			detections[i].erase(detections[i].begin() + 0);
+
+			classDetections.push_back(meanWindowCalc(cluster));
+		}
+
+		classDetections.push_back(detections[i][0]);
+
+		detections[i].erase(detections[i].begin() + 0);
+
+		processedDetections.push_back(classDetections);		
+
+	}
+
+	return processedDetections;
+
+}
+
+// Implementation of overlap calcualtor:
+
+double overlapCalc(Rect a, Rect b){
+
+	double intersection = (a & b).area();
+	double rectUnion = a.area() + b.area() - intersection;
+	double overlap = intersection / rectUnion;
+
+	return overlap;
+
+}
+
+// Implementation of mean window calculator:
+
+Rect meanWindowCalc(vector<Rect> cluster){
+
+	int x = 0;
+	int y = 0;
+	int width = 0;
+	int height = 0;
+
+	for(int i = 0; i < cluster.size(); i++){
+
+		x += cluster[i].x;
+		y += cluster[i].y;
+		width += cluster[i].width;
+		height += cluster[i].height;
+
+	}
+
+	return Rect(x / cluster.size(), y / cluster.size(), width / cluster.size(), height / cluster.size());
 
 }
 
@@ -203,6 +278,10 @@ vector<vector<Rect>> multiScaleDetection(Mat src){
 	// Toggle Gaussian blurring:
 
 	bool gaussianBlur = 0;
+
+	// Toggle non maximum suppression:
+
+	bool nonMaxSuppression = 0;
 
 	// Setting detection parameters:
 
@@ -230,7 +309,7 @@ vector<vector<Rect>> multiScaleDetection(Mat src){
 
 	// Acquire detections:
 
-	vector<vector<Rect>> detections = slidingWindowDetection(imagePyramid, windowSize, scaling, stride, SVMModel);
+	vector<vector<Rect>> detections = slidingWindowDetection(imagePyramid, windowSize, scaling, stride, nonMaxSuppression, SVMModel);
 
 	return detections;
 	
