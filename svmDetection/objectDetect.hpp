@@ -61,11 +61,11 @@ using namespace std;
 
 vector<Mat> constructImagePyramid(Mat src, Size windowSize, double scaling, bool gaussianBlur);
 vector<vector<Rect>> slidingWindowDetection(vector<Mat> imagePyramid, Size window, double scaling, int stride, bool nonMaxSuppression, struct svm_model* SVMModel);
-int svmDetect(vector<double> featureVector, struct svm_model* SVMModel);
+int svmPredict(vector<double> featureVector, struct svm_model* SVMModel);
 vector<vector<Rect>> nonMaxSuppression(vector<vector<Rect>> detections, double overlapThresh);
 double overlapCalc(Rect a, Rect b);
 Rect meanWindowCalc(vector<Rect> cluster);
-vector<vector<Rect>> multiScaleDetection(Mat src);
-
+vector<vector<Rect>> multiScaleDetection(Mat src, Size windowSize, double scaling, int stride, bool gaussianBlur, bool nonMaxSuppression, struct svm_model* SVMModel);
+void svmDetect(ctx* context, Size windowSize, double scaling, int stride, bool gaussianBlur, bool nonMaxSuppression);
 
 #endif /*!OBJECTDETECT_H*/

@@ -103,7 +103,7 @@ vector<vector<Rect>> slidingWindowDetection(vector<Mat> imagePyramid, Size windo
 
 				// Check if the area contains an object in a sought class:
 
-				classCheck = svmDetect(featureVector, SVMModel);
+				classCheck = svmPredict(featureVector, SVMModel);
 
 				if(classCheck != 0){
 
@@ -164,7 +164,7 @@ vector<vector<Rect>> slidingWindowDetection(vector<Mat> imagePyramid, Size windo
 
 }
 
-int svmDetect(vector<double> featureVector, struct svm_model *SVMModel){
+int svmPredict(vector<double> featureVector, struct svm_model *SVMModel){
 
 	struct svm_node *svmVec;
 
@@ -273,35 +273,7 @@ Rect meanWindowCalc(vector<Rect> cluster){
 
 // Implementation of the multi-scale detection algorithm:
 
-vector<vector<Rect>> multiScaleDetection(Mat src){
-
-	// Toggle Gaussian blurring:
-
-	bool gaussianBlur = 0;
-
-	// Toggle non maximum suppression:
-
-	bool nonMaxSuppression = 0;
-
-	// Setting detection parameters:
-
-	Size windowSize(30,30);
-
-	double scaling = 0.5;
-
-	int stride = 10;
-
-	// Initialize SVM model:
-
-	const char *MODEL_FILE = "trainSVM.model";
-
-	struct svm_model *SVMModel;
-
-	if((SVMModel = svm_load_model(MODEL_FILE)) == 0){
-
-		fprintf(stderr, "Can't load SVM model. %s", MODEL_FILE);
-	
-	}
+vector<vector<Rect>> multiScaleDetection(Mat src, Size windowSize, double scaling, int stride, bool gaussianBlur, bool nonMaxSuppression, struct svm_model* SVMModel){
 	
 	// Create the image pyramid:
 
@@ -314,4 +286,97 @@ vector<vector<Rect>> multiScaleDetection(Mat src){
 	return detections;
 	
 }
+
+void svmDetect(ctx* context, Size windowSize, double scaling, int stride, bool gaussianBlur, bool nonMaxSuppression){
+
+	// Toggle detections:
+
+	bool detectHeads = true;
+	bool detectDorsals = true;
+	bool detectCoidals = true;
+
+	// Initialize SVM model:
+
+	const char *MODEL_FILE = "trainSVM.model";
+
+	struct svm_model* SVMModel;
+
+	if((SVMModel = svm_load_model(MODEL_FILE)) == 0){
+
+		fprintf(stderr, "Can't load SVM model. %s", MODEL_FILE);
+
+	}
+
+	// Initialize detection vectors:
+
+	vector<Rect> fishHeads;
+	vector<Rect> dorsalFins;
+	vector<Rect> coidalFins;
+
+	// Initialize variables:
+
+	Mat cpuFrame;
+	Mat tmp;
+
+	while(true){
+
+		context->imagemutex->lock();
+
+		tmp = *context->image;
+
+		cpuFrame = tmp.clone();
+
+		vector<vector<Rect>> svmDetections = multiScaleDetection(cpuFrame, windowSize, scaling, stride, gaussianBlur, nonMaxSuppression, SVMModel);
+
+		fishHeads = svmDetections[0];
+		dorsalFins = svmDetections[1];
+		coidalFins = svmDetections[2];
+
+		if(!fishHeads.empty() && detectHeads){
+
+			for(int i = 0; i < fishHeads.size(); i++){
+
+				cv::rectangle(cpuFrame, fishHeads[i], cv::Scalar(70, 212, 37));
+
+			}
+		}
+
+		if(!dorsalFins.empty() && detectDorsals){
+
+			for(int i = 0; i < dorsalFins.size(); i++){
+
+				cv::rectangle(cpuFrame, dorsalFins[i], cv::Scalar(49, 37, 212));
+
+			}
+		}
+		
+		if(!coidalFins.empty() && detectCoidals){
+
+			for(int i = 0; i < coidalFins.size(); i++){
+
+				cv::rectangle(cpuFrame, coidalFins[i], cv::Scalar(181, 38, 213));
+
+			}
+		}
+
+		imshow("Display", cpuFrame);
+
+		waitKey(5);
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

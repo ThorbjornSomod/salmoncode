@@ -9,7 +9,7 @@ int main() {
 
 	const char* streamSource = "rtsp://admin:ral1004@192.168.2.3:2020/videoinput_1/h264_1/media.stm";
 
-	const char* fileSource = "file:///home/sealab/svmlearner/videos/testing.mp4";
+	const char* fileSource = "file:///home/thorbjornsomod/salmoncode/cascadeDetection/testing.mp4";
 
 	// Start videofeed:
 

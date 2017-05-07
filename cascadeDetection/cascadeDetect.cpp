@@ -7,8 +7,8 @@ void* cascadeDetect(ctx* context) {
 	// Toggle detections:
 
 	bool detectCoidals = 1;
-	bool detectHeads = 0;
-	bool detectDorsals = 0;
+	bool detectHeads = 1;
+	bool detectDorsals = 1;
 
 	// Load cascades:
 
