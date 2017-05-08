@@ -28,6 +28,7 @@
 #include <stdio.h>
 #include <thread>
 #include <string.h>
+#include <time.h>
 
 /*Namespaces*/
 
@@ -44,5 +45,6 @@ void changeColorSpaceOfImageUsingGpu(std::string input_file, std::string output_
 void changeColorSpaceOfVideoUsingGpu(std::string input_file, std::string output_file);
 void normalizeImageUsingGpu();
 void imageConverter();
+void getRandomNegatives();
 
 #endif /*!TOOLS_H*/

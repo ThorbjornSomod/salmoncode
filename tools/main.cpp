@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
 
-	//readAnnotationFile("/home/sealab/lbpcudacascade/training/pos/annotations.txt");
+	readAnnotationFile("/home/sealab/svmlearner/training/annotations/coidal_annotations.txt");
 
 	//system("pause");
 
@@ -21,7 +21,11 @@ int main() {
 
 	//	imwrite("/home/sealab/svmlearner/training/pos/tmp/pos" + std::to_string(868 + i) + ".png", src);
 
-	//} 
+	//}
+
+	//imageConverter();
+
+	//getRandomNegatives(); 
 
 	return 0;
 

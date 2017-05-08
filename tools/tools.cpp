@@ -137,7 +137,7 @@ void imageConverter(){
 
 	cv::cuda::GpuMat gpu;
 
-	for(int i = 1; i < 467; i++){
+	for(int i = 1; i < 4172; i++){
 
 		//input_image = cv::imread("/home/sealab/lbpcudacascade/training_images/pos/color/pos (" + to_string(i) + ").png", -1);
 
@@ -149,9 +149,9 @@ void imageConverter(){
 
 		//cv::imwrite("/home/sealab/lbpcudacascade/training_images/pos/color/pos" + to_string(i) + ".png", output_image);
 
-		std::string oldname  = "/home/sealab/lbpcudacascade/training_images/val/val (" + to_string(i) + ").png";
+		std::string oldname  = "/home/sealab/lbpcudacascade/training/neg/neg (" + to_string(i) + ").jpg";
 
-		std::string newname  = "/home/sealab/lbpcudacascade/training_images/val/val" + to_string(i) + ".png";
+		std::string newname  = "/home/sealab/lbpcudacascade/training/neg/neg" + to_string(i) + ".jpg";
 		
 		const char* a = oldname.c_str();
 
@@ -201,6 +201,41 @@ void changeColorSpaceOfVideoUsingGpu(std::string input_file, std::string output_
 		cv::waitKey(20);
 
 		gpu_frame.release();
+
+	}
+}
+
+void getRandomNegatives(){
+
+	Size negSize(30,30);
+
+	srand(time(NULL));
+
+	Mat img;
+	
+	Mat imgRoi;
+
+	int r, x, y;
+
+	Rect roi;
+
+	for(int i = 2755; i < 5000; i++){
+
+		r = rand() % 4172;
+
+		cout << r << endl;
+
+		img = imread("/home/sealab/lbpcudacascade/training/neg/neg" + to_string(r) + ".jpg");
+
+		x = rand() % (img.cols - negSize.width -10);
+
+		y = rand() % (img.rows - negSize.height -10);
+
+		roi = Rect(x, y, negSize.width, negSize.height);
+
+		imgRoi = img(roi);
+
+		imwrite("/home/sealab/svmlearner/training/neg/back2/back" + to_string(i + 1) + ".png", imgRoi);
 
 	}
 }

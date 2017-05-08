@@ -24,7 +24,7 @@ void readAnnotationFile(string filename){
 
 		string filename_img = word;
 		
-		img = imread("/home/sealab/lbpcudacascade/training/pos/color/" + filename_img, IMREAD_UNCHANGED);
+		img = imread("/home/sealab/lbpcudacascade/training/pos/" + filename_img, IMREAD_UNCHANGED);
 	
 		iss >> word;
 
@@ -55,7 +55,7 @@ void readAnnotationFile(string filename){
 
 			img_r = img(r);
 
-			imwrite("/media/sealab/My Passport/fish_parts/coidal_fins/coidal_" + to_string(c) + "_" + to_string(i) + ".png", img_r);
+			imwrite("/home/sealab/svmlearner/training/classImages/coidal/coidal" + to_string(c) + "_" + to_string(i) + ".jpg", img_r);
 
 			vr.push_back(r);
 

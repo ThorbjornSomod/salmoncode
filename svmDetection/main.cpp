@@ -11,6 +11,8 @@ bool NMS = true;
 
 int main(){
 
+	/*
+
 	struct ctx* context = (struct ctx*)malloc(sizeof(*context));
 
 	// Media sources:
@@ -31,6 +33,10 @@ int main(){
 
 	imageRetriever.join();
 	svmDetection.join();
+
+	*/
+
+	createSVMTrainingFile("/home/sealab/svmlearner/training/classImages/coidal/", "/home/sealab/svmlearner/training/svmTrainingFiles/svmCoidalFile.txt", 3, 5, 2, 8, "u2", 1);
 
 	return 0;
 

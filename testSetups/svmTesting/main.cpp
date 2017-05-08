@@ -11,26 +11,86 @@ bool NMS = true;
 
 int main(){
 
-	struct ctx* context = (struct ctx*)malloc(sizeof(*context));
+	// Initialize SVM model:
 
-	// Media sources:
+	const char* MODEL_FILE = "trainSVM.model";
 
-	const char* streamSource = "rtsp://admin:ral1004@192.168.2.3:2020/videoinput_1/h264_1/media.stm";
+	struct svm_model* SVMModel;
 
-	const char* fileSource = "file:///home/sealab/svmlearner/videos/testing.mp4";
+	if((SVMModel = svm_load_model(MODEL_FILE)) == 0){
 
-	// Start videofeed:
+		fprintf(stderr, "Can't load SVM model. %s", MODEL_FILE);
 
-	std::thread imageRetriever(updateMatrixData, context, fileSource);
+	}
 
-	// Detection using LBP SVM classifier:
+	// Initialize result containers:
 
-	std::thread svmDetection(svmDetect, context, windowSize, scaling, stride, gaussianBlur, NMS);
+	int head, dorsal, coidal, back;
 
-	// Join threads:
+	vector<Rect> fishHeads;
+	vector<Rect> dorsalFins;
+	vector<Rect> coidalFins;
 
-	imageRetriever.join();
-	svmDetection.join();
+	// Initialize variables:
+
+	Size windowSize(30,30);
+
+	double scaling = 0.5;
+
+	int stride = 10;
+
+	bool gaussianBlur = true;
+
+	bool NMS = true;
+
+	Mat src;
+
+	cv::String testDir = "";
+
+	vector<cv::String> filenames;
+
+	cv::glob(testDir, filenames);
+
+	for(size_t i = 0; i < filenames.size(); ++i){
+
+		src = imread(filenames[i], IMREAD_GRAYSCALE);
+
+		vector<vector<Rect>> svmPredictions = multiScaleDetection(src, windowSize, scaling, stride, gaussianBlur, NMS, SVMModel);
+
+		fishHeads = svmPredictions[0];
+		dorsalFins = svmPredictions[1];
+		coidalFins = svmPredictions[2];
+
+		if(!fishHeads.empty()){
+
+			head++;
+
+		}
+
+		if(!dorsalFins.empty()){
+
+			dorsal++;
+
+		}
+
+		if(!coidalFins.empty()){
+
+			coidal++;
+
+		}
+
+		if(fishHeads.empty() && dorsalFins.empty() && coidalFins.empty()){
+
+			back++;
+
+		}	
+
+	}
+
+	cout << "Head predictions:	" << head << endl;
+	cout << "Dorsal predictions:	" << dorsal << endl;
+	cout << "Coidal predictions: 	" << coidal << endl;
+	cout << "Background predictions:	" << back << endl;
 
 	return 0;
 
