@@ -14,6 +14,8 @@ void readAnnotationFile(string filename){
 
 	int c = 0;
 
+	Size dSize(35,35);
+
 	for(string line; getline(file, line);){
 
 		istringstream iss(line);
@@ -24,7 +26,7 @@ void readAnnotationFile(string filename){
 
 		string filename_img = word;
 		
-		img = imread("/home/sealab/lbpcudacascade/training/pos/" + filename_img, IMREAD_UNCHANGED);
+		img = imread("/home/sealab/lbpcudacascade/training/val/" + filename_img, IMREAD_GRAYSCALE);
 	
 		iss >> word;
 
@@ -55,7 +57,9 @@ void readAnnotationFile(string filename){
 
 			img_r = img(r);
 
-			imwrite("/home/sealab/svmlearner/training/classImages/coidal/coidal" + to_string(c) + "_" + to_string(i) + ".jpg", img_r);
+			cv::resize(img_r, img_r, dSize);
+
+			imwrite("/home/sealab/lbpcudacascade/training/val/coidal_validation/val" + to_string(c) + "_" + to_string(i) + ".png", img_r);
 
 			vr.push_back(r);
 

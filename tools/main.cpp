@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
 
-	readAnnotationFile("/home/sealab/svmlearner/training/annotations/coidal_annotations.txt");
+	readAnnotationFile("/home/sealab/lbpcudacascade/training/val/coidal_validation_annotations.txt");
 
 	//system("pause");
 

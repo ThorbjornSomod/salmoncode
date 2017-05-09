@@ -11,7 +11,7 @@ int main() {
 
 	int head, dorsal, coidal, back, total;
 
-	String testDir = "";
+	String testDir = "/home/sealab/lbpcudacascade/training/val/coidal_validation/";
 
 	// Load cascades:
 
@@ -39,7 +39,7 @@ int main() {
 
 		gpuSrc.upload(src);
 
-		cv::cuda::cvtColor(gpuSrc, gpuSrc, CV_BGR2GRAY);
+		//cv::cuda::cvtColor(gpuSrc, gpuSrc, CV_BGR2GRAY);
 
 		std::vector<Rect> fishHeads;
 		std::vector<Rect> coidalFins;

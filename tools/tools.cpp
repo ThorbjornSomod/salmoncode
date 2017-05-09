@@ -207,7 +207,7 @@ void changeColorSpaceOfVideoUsingGpu(std::string input_file, std::string output_
 
 void getRandomNegatives(){
 
-	Size negSize(30,30);
+	Size negSize(35,35);
 
 	srand(time(NULL));
 
@@ -219,7 +219,7 @@ void getRandomNegatives(){
 
 	Rect roi;
 
-	for(int i = 2755; i < 5000; i++){
+	for(int i = 0; i < 500; i++){
 
 		r = rand() % 4172;
 
@@ -235,7 +235,7 @@ void getRandomNegatives(){
 
 		imgRoi = img(roi);
 
-		imwrite("/home/sealab/svmlearner/training/neg/back2/back" + to_string(i + 1) + ".png", imgRoi);
+		imwrite("/home/sealab/lbpcudacascade/training/val/background_validation/val" + to_string(i + 1) + ".png", imgRoi);
 
 	}
 }
