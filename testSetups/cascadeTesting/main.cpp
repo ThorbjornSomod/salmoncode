@@ -6,12 +6,15 @@ int main() {
 	Mat src;
 
 	GpuMat gpuSrc;
-
 	GpuMat objbuf;
 
-	int head, dorsal, coidal, back, total;
+	int head = 0;
+	int dorsal = 0;
+	int coidal = 0;
+	int back = 0;
+	int total = 0;
 
-	String testDir = "/home/sealab/lbpcudacascade/training/val/coidal_validation/";
+	String testDir = "/home/sealab/salmoncode/testSetups/testSets/background_validation";
 
 	// Load cascades:
 
@@ -54,25 +57,25 @@ int main() {
 		dorsal_cascade->detectMultiScale(gpuSrc, objbuf);
 		dorsal_cascade->convert(objbuf, dorsalFins);
 
-		if(!fishHeads.empty()){
+		if(fishHeads.size() != 0){
 
 			head++;
 
 		}
 
-		if(!dorsalFins.empty()){
+		if(dorsalFins.size() != 0){
 
 			dorsal++;
 
 		}
 
-		if(!coidalFins.empty()){
+		if(coidalFins.size() != 0){
 
 			coidal++;
 		
 		}
 
-		if(fishHeads.empty() && dorsalFins.empty() && coidalFins.empty()){
+		if(fishHeads.size() == 0 && dorsalFins.size() == 0 && coidalFins.size() == 0){
 
 			back++;
 
@@ -86,6 +89,7 @@ int main() {
 	cout << "Dorsal predictions:	" << dorsal << endl;
 	cout << "Coidal predictions:	" << coidal << endl;
 	cout << "Background predictions:	" << back << endl;
+	cout << "Searched images:	" << total << endl;
 
 	gpuSrc.release();
 	objbuf.release();
