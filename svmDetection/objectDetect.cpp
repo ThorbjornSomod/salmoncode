@@ -10,8 +10,6 @@ vector<Mat>constructImagePyramid(Mat src, Size windowSize, double scaling, bool 
 	
 	vector<Mat> imagePyramid;
 
-	int i = 0;
-
 	while(windowSize.height < tmp.rows && windowSize.width < tmp.cols){
 
 		//std::string name = "/home/sealab/salmoncode/svmDetection/pyramid/imagePyramidLevel-" + to_string(i) + ".png";
@@ -27,9 +25,6 @@ vector<Mat>constructImagePyramid(Mat src, Size windowSize, double scaling, bool 
 			cv::GaussianBlur(tmp, tmp, Size(5,5), 0, 0, BORDER_DEFAULT);
 
 		}
-
-		i++;
-
 	}
 
 	return imagePyramid;
@@ -102,6 +97,15 @@ vector<vector<Rect>> slidingWindowDetection(vector<Mat> imagePyramid, Size windo
 				// Extract the LBP Feature Vector:
 
 				vector<double> featureVector = extractLBPFeatureVector(roiImage, 5, 1, 8, "hf", true);
+
+				double max = *max_element(featureVector.begin(), featureVector.end());
+				double min = *min_eleent(featureVector.begin(), featureVector.end());
+
+				for(int i = 0; i < featureVector.size(), i++){
+
+					featureVector[i] = 2 * ((featureVector[i] - min) / (max - min)) - 1;
+
+				}
 
 				// Check if the area contains an object in a sought class:
 

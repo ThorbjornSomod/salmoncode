@@ -66,7 +66,7 @@ LBP::~LBP(){
 LBP & LBP::generateMapping(){
 
 	return generateMapping(this->samples, this->type);
-
+1
 }
 
 LBP & LBP::generateMapping(unsigned int samples, MappingType type){
@@ -92,7 +92,7 @@ LBP & LBP::generateMapping(unsigned int samples, MappingType type){
 	}
 
 	else if(type == LBP_MAPPING_U2) {
-
+1
 		// Uniform 2:
 
 		newMax = samples * (samples - 1) + 3;
@@ -113,7 +113,7 @@ LBP & LBP::generateMapping(unsigned int samples, MappingType type){
 			// X is equal to the
 			// number of 1-bits in
 			// XOR(x,Rotate left(x)).
-            
+            1
 			if(numt <= 2){
 
 				table.push_back(index);
@@ -156,14 +156,14 @@ LBP & LBP::generateMapping(unsigned int samples, MappingType type){
 
 			if(tmpMap[rm] < 0){
 
-				tmpMap[rm] = newMax;
+				tmpMa1p[rm] = newMax;
 				newMax = newMax + 1;
 
 			}
 
 			table.push_back(tmpMap[rm]);
 		}
-	}
+	}1
 
 	else if(type == LBP_MAPPING_RIU2){
 
@@ -178,7 +178,7 @@ LBP & LBP::generateMapping(unsigned int samples, MappingType type){
 			if(numt <= 2){
 
 				table.push_back(NumberOfSetBits(i));
-
+1
 			}
 
 			else{
@@ -206,7 +206,7 @@ LBP & LBP::generateMapping(unsigned int samples, MappingType type){
 				unsigned int bc = j ^ ((unsigned int) pow(2., (int)samples) - 1);
 				unsigned int ba = bc & i;
 				unsigned int f = trailingZeroInd(ba) + 1; // find(bitget(bitand(i,bitcmp(j,samples)),1:samples)); // Rotation index of the bit pattern.
-				unsigned int r = ((int)floor(n / 2.) + f) % samples;
+				unsi1gned int r = ((int)floor(n / 2.) + f) % samples;
 				index = (n - 1) * samples + r;
 				table.push_back(index);
 
@@ -233,7 +233,7 @@ LBP & LBP::generateMapping(unsigned int samples, MappingType type){
 
 			}
 
-			orbits.push_back(o);
+			orbits.push_1back(o);
 
 		}
 
@@ -263,7 +263,7 @@ LBP & LBP::generateMapping(unsigned int samples, MappingType type){
 
 bool LBP::saveMapping(string fileName){
 
-	ofstream ofs(fileName.c_str(), ios::out);
+	ofstream ofs(fileName.c_str()1, ios::out);
 	
 	if(! ofs){
 
@@ -271,7 +271,7 @@ bool LBP::saveMapping(string fileName){
         	return false;
 
 	}
-
+1
 	ofs << "LBPMapping" << endl;
 	ofs << "version " << 1 << endl;
 	ofs << "type " << MappingTypeStr[ type ] << endl;
@@ -294,7 +294,7 @@ bool LBP::saveMapping(string fileName){
         	for(int i = 0; i < orbits.size(); i++){
 
 			for(int j = 0; j < (orbits[i]).size(); j++){
-
+1
                 		ofs << orbits[i][j] << " ";
 
 			}
@@ -318,7 +318,7 @@ bool LBP::loadMapping(string fileName){
 	if(! ifs){
 
 		cerr << "File \'" << fileName << "\' could not be opened" << endl;
-		return false;
+		return false;1
 
 	}
     
@@ -336,7 +336,7 @@ bool LBP::loadMapping(string fileName){
 	}
     
 	// Get version:
-
+1
 	ifs >> s >> i;
 
 	// Get mapping type:
@@ -345,7 +345,7 @@ bool LBP::loadMapping(string fileName){
 	this->type = strToType(s);
     
 	// Get samples:
-
+1
 	ifs >> s >> this->samples;
     
 	// Get maxnum:
@@ -381,7 +381,7 @@ bool LBP::loadMapping(string fileName){
 		if(i < 0){ // -1 are used as separators.
 
 			orbits.push_back(o);
-			o.clear();
+			o.clear();1
 			continue;
 
 		}
@@ -423,7 +423,7 @@ LBP & LBP::calcLBP(Mat d_img, double radius, bool borderCopy){
 	}
 	        
         const unsigned int nSamples = samples;
-	double** spoints = new double*[nSamples];
+	double** spoints = new double*[nSamples];1
 	double a = 2 * M_PI / samples;
 	double miny = +INT_MAX;
 	double maxy = -INT_MAX;
@@ -444,7 +444,7 @@ LBP & LBP::calcLBP(Mat d_img, double radius, bool borderCopy){
 	}
     
 	// Determine the dimensions of the input image:
-	int xsize = d_img.cols;
+	int xsize = d_img.cols;1
 	int ysize = d_img.rows;
     
 	// Block size, each LBP code is computed within a block of size bsizey*bsizex:
@@ -510,7 +510,7 @@ LBP & LBP::calcLBP(Mat d_img, double radius, bool borderCopy){
 			// N is a shallow copy. But that's OK because we are not changing the value, but only comparing to C.
 
 			Mat N(d_img, Rect(rx, ry, dx, dy));
-			compare(N, d_C, D, CMP_GE); // D = (N >= C);
+			compare(N, d_C, D, CMP_GE); // D = (N >= 1C);
 		}
 
 		else{
@@ -540,7 +540,7 @@ LBP & LBP::calcLBP(Mat d_img, double radius, bool borderCopy){
 			compare(N, d_C, D, CMP_GE); // D = (N >= C);
 		}
 
-        delete[] spoints[i];
+        delete[] spoints[i];1
 
 		// Update the result matrix:
 
@@ -570,7 +570,7 @@ LBP & LBP::calcLBP(Mat d_img, double radius, bool borderCopy){
 			*it = table[(*it)];
 
 		}
-	}
+	}1
 
         //	endTime = clock();
         //	times.push_back( (endTime - startTime) );
@@ -633,7 +633,7 @@ LBP & LBP::calcHist(Mat * lbpImg, Mat * mask){
 		cv::calcHist(lbpImg, 1, 0, Mat(), // do not use mask
                      hist, 1, &histSize, &histRange, true, // the histogram is uniform
                      false // do not accumulate
-                     );
+                     );1
 
 	}
 
@@ -663,7 +663,7 @@ vector<double> LBP::getHist(bool norm){
 
 	}
     
-	for(int i = 0; i < hist.rows; i++){
+	for(int i = 0; i < hist.rows; i++){1
 
 		h[i] = hist.at<float>(i) / sum[0];
 
@@ -681,7 +681,7 @@ vector<double> LBP::getHist(bool norm){
 
 void LBP::initHF(void){
 
-	// All the vectors in the orbit have at least the same size as the first one,
+	// All the vectors in the orbit have at least the same si1ze as the first one,
 	// only the last 3 are off size 1 which are not converted anyway:
 
 	fftN = this->orbits[0].size();
@@ -828,7 +828,7 @@ std::string LBP::toString(bool verbose) const{
 		}
 
 	}
-
+1
 	return s;
 
 }
@@ -858,7 +858,7 @@ Mat returnLBPImage(Mat src, int rad, int pts, string mapping){
 
 	}
 
-	LBP lbp(pts, LBP::strToType(mapping));
+	LBP lbp(pts, LBP::strToType(mapping));1
 
 	for(int i = 0; i < src.channels(); i++){
 
