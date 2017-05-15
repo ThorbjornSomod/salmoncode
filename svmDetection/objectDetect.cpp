@@ -4,7 +4,9 @@
 
 vector<Mat>constructImagePyramid(Mat src, Size windowSize, double scaling, bool gaussianBlur){
 
-	Mat tmp = src;
+	Mat tmp;
+
+	cv::cvtColor(src, tmp, CV_BGR2GRAY);
 	
 	vector<Mat> imagePyramid;
 
@@ -104,6 +106,8 @@ vector<vector<Rect>> slidingWindowDetection(vector<Mat> imagePyramid, Size windo
 				// Check if the area contains an object in a sought class:
 
 				classCheck = svmPredict(featureVector, SVMModel);
+
+				cout << "Class:	" << classCheck << endl;
 
 				if(classCheck != 0){
 
@@ -297,7 +301,7 @@ void svmDetect(ctx* context, Size windowSize, double scaling, int stride, bool g
 
 	// Initialize SVM model:
 
-	const char *MODEL_FILE = "trainSVM.model";
+	const char *MODEL_FILE = "svmTrain1000.model";
 
 	struct svm_model* SVMModel;
 
@@ -325,6 +329,8 @@ void svmDetect(ctx* context, Size windowSize, double scaling, int stride, bool g
 		tmp = *context->image;
 
 		cpuFrame = tmp.clone();
+
+		context->imagemutex->unlock();
 
 		vector<vector<Rect>> svmDetections = multiScaleDetection(cpuFrame, windowSize, scaling, stride, gaussianBlur, nonMaxSuppression, SVMModel);
 
@@ -359,7 +365,7 @@ void svmDetect(ctx* context, Size windowSize, double scaling, int stride, bool g
 			}
 		}
 
-		imshow("Display", cpuFrame);
+		imshow("Display", cpuFrame);		
 
 		waitKey(5);
 

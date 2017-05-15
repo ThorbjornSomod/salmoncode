@@ -13,7 +13,7 @@ int main(){
 
 	// Initialize SVM model:
 
-	const char* MODEL_FILE = "trainSVM.model";
+	const char* MODEL_FILE = "/home/thorbjornsomod/Desktop/easyModels/test1000/svmTrain1000.model";
 
 	struct svm_model* SVMModel;
 
@@ -25,7 +25,11 @@ int main(){
 
 	// Initialize result containers:
 
-	int head, dorsal, coidal, back;
+	int head = 0;
+	int dorsal = 0;
+	int coidal = 0;
+	int back = 0;
+	int total = 0;
 
 	vector<Rect> fishHeads;
 	vector<Rect> dorsalFins;
@@ -39,13 +43,15 @@ int main(){
 
 	int stride = 10;
 
-	bool gaussianBlur = true;
+	bool gaussianBlur = false;
 
 	bool NMS = true;
 
 	Mat src;
 
-	cv::String testDir = "";
+	// Retrieve filenames:
+
+	cv::String testDir = "/home/thorbjornsomod/Desktop/head_validation";
 
 	vector<cv::String> filenames;
 
@@ -61,29 +67,31 @@ int main(){
 		dorsalFins = svmPredictions[1];
 		coidalFins = svmPredictions[2];
 
-		if(!fishHeads.empty()){
+		if(fishHeads.size() != 0){
 
 			head++;
 
 		}
 
-		if(!dorsalFins.empty()){
+		if(dorsalFins.size() != 0){
 
 			dorsal++;
 
 		}
 
-		if(!coidalFins.empty()){
+		if(coidalFins.size() != 0){
 
 			coidal++;
 
 		}
 
-		if(fishHeads.empty() && dorsalFins.empty() && coidalFins.empty()){
+		if(fishHeads.size() == 0 && dorsalFins.size() == 0 && coidalFins.size() == 0){
 
 			back++;
 
 		}	
+
+	total++;
 
 	}
 
@@ -91,6 +99,7 @@ int main(){
 	cout << "Dorsal predictions:	" << dorsal << endl;
 	cout << "Coidal predictions: 	" << coidal << endl;
 	cout << "Background predictions:	" << back << endl;
+	cout << "Searched images:	" << total << endl;
 
 	return 0;
 

@@ -99,7 +99,16 @@ vector<vector<Rect>> slidingWindowDetection(vector<Mat> imagePyramid, Size windo
 
 				// Extract the LBP Feature Vector:
 
-				vector<double> featureVector = extractLBPFeatureVector(roiImage, 5, 1, 8, "hf", true);
+				vector<double> featureVector = extractLBPFeatureVector(roiImage, 5, 2, 8, "u2", true);
+				
+				double max = *max_element(featureVector.begin(), featureVector.end());
+				double min = *min_element(featureVector.begin(), featureVector.end());
+
+				for(int i = 0; i < featureVector.size(); i++){
+
+					featureVector[i] = 2 * ((featureVector[i] - min) / (max - min)) - 1;
+				
+				}
 
 				// Check if the area contains an object in a sought class:
 

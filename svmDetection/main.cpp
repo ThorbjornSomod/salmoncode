@@ -11,15 +11,25 @@ bool NMS = true;
 
 int main(){
 
-	/*
+	// Set parameters:
 
 	struct ctx* context = (struct ctx*)malloc(sizeof(*context));
+
+	Size windowSize(30,30);
+
+	double scaling = 0.5;
+
+	int stride = 10;
+
+	gaussianBlur = false;
+
+	bool NMS = true;
 
 	// Media sources:
 
 	const char* streamSource = "rtsp://admin:ral1004@192.168.2.3:2020/videoinput_1/h264_1/media.stm";
 
-	const char* fileSource = "file:///home/sealab/svmlearner/videos/testing.mp4";
+	const char* fileSource = "file:///home/thorbjornsomod/salmoncode/svmDetection/vlc_hitra_salmon_resized.mp4";
 
 	// Start videofeed:
 
@@ -34,9 +44,7 @@ int main(){
 	imageRetriever.join();
 	svmDetection.join();
 
-	*/
-
-	createSVMTrainingFile("/home/sealab/svmlearner/training/classImages/coidal/", "/home/sealab/svmlearner/training/svmTrainingFiles/svmCoidalFile.txt", 3, 5, 2, 8, "u2", 1);
+	//createSVMTrainingFile("/home/sealab/svmlearner/training/classImages/coidal/", "/home/sealab/svmlearner/training/svmTrainingFiles/svmCoidalFile.txt", 3, 5, 2, 8, "u2", 1);
 
 	return 0;
 

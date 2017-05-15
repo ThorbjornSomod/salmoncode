@@ -14,7 +14,7 @@ int main() {
 	int back = 0;
 	int total = 0;
 
-	String testDir = "/home/sealab/salmoncode/testSetups/testSets/background_validation";
+	String testDir = "/home/thorbjornsomod/Desktop/head_validation";
 
 	// Load cascades:
 
