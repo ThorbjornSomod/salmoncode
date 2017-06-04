@@ -11,15 +11,17 @@ bool NMS = true;
 
 int main(){
 
+	/*
+
 	// Set parameters:
 
 	struct ctx* context = (struct ctx*)malloc(sizeof(*context));
 
-	Size windowSize(30,30);
+	Size windowSize(50,50);
 
 	double scaling = 0.5;
 
-	int stride = 10;
+	int stride = 25;
 
 	gaussianBlur = false;
 
@@ -44,7 +46,9 @@ int main(){
 	imageRetriever.join();
 	svmDetection.join();
 
-	//createSVMTrainingFile("/home/sealab/svmlearner/training/classImages/coidal/", "/home/sealab/svmlearner/training/svmTrainingFiles/svmCoidalFile.txt", 3, 5, 2, 8, "u2", 1);
+	*/	
+
+	createSVMTrainingFile("/home/thorbjornsomod/Desktop/classImages/background", "/home/thorbjornsomod/Desktop/svmTrainingFiles/lbp/lbp-5000/lbp-5000-background.txt", 0, 5, 2, 8, "hf", 1);
 
 	return 0;
 

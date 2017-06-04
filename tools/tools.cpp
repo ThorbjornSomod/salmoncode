@@ -219,13 +219,13 @@ void getRandomNegatives(){
 
 	Rect roi;
 
-	for(int i = 0; i < 500; i++){
+	for(int i = 0; i < 1; i++){
 
 		r = rand() % 4172;
 
 		cout << r << endl;
 
-		img = imread("/home/sealab/lbpcudacascade/training/neg/neg" + to_string(r) + ".jpg");
+		img = imread("/home/thorbjornsomod/Desktop/neg/neg (" + to_string(r) + ").jpg");
 
 		x = rand() % (img.cols - negSize.width -10);
 
@@ -235,7 +235,7 @@ void getRandomNegatives(){
 
 		imgRoi = img(roi);
 
-		imwrite("/home/sealab/lbpcudacascade/training/val/background_validation/val" + to_string(i + 1) + ".png", imgRoi);
+		imwrite("/home/thorbjornsomod/Desktop/val" + to_string(i + 1) + ".png", imgRoi);
 
 	}
 }

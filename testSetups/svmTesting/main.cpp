@@ -13,7 +13,7 @@ int main(){
 
 	// Initialize SVM model:
 
-	const char* MODEL_FILE = "/home/thorbjornsomod/Desktop/easyModels/test1000/svmTrain1000.model";
+	const char* MODEL_FILE = "/home/thorbjornsomod/Desktop/svmTrainingFiles/lbp-u2/lbp-u2-5000/lbp-u2-5000-train.model";
 
 	struct svm_model* SVMModel;
 
