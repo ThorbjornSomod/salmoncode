@@ -80,10 +80,10 @@ int main(){
 
 	}
 
+	cout << "Background pridictions:	" << back << endl;
 	cout << "Head predictions:	" << head << endl;
 	cout << "Dorsal predictions:	" << dorsal << endl;
 	cout << "Coidal predictions: 	" << coidal << endl;
-	cout << "Background predictions:	" << back << endl;
 	cout << "Searched images:	" << total << endl;
 
 	return 0;
