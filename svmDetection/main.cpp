@@ -48,7 +48,7 @@ int main(){
 
 	*/	
 
-	createSVMTrainingFile("/home/thorbjornsomod/Desktop/classImages/background", "/home/thorbjornsomod/Desktop/svmTrainingFiles/lbp/lbp-5000/lbp-5000-background.txt", 0, 5, 2, 8, "hf", 1);
+	createSVMTrainingFile("/home/thorbjornsomod/Desktop/background", "/home/thorbjornsomod/Desktop/svmTrainingFiles/RBF/lbp-hf-PENDING/lbp-hf-5000/lbp-hf-5000-background.txt", 0, 5, 2, 8, "hf", 1);
 
 	return 0;
 

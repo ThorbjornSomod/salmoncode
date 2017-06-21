@@ -14,6 +14,7 @@
 #include "opencv2/features2d.hpp"
 #include "opencv2/xfeatures2d.hpp"
 #include "opencv2/objdetect.hpp"
+#include "opencv2/ximgproc/segmentation.hpp"
 
 #include "opencv2/cudawarping.hpp"
 #include "opencv2/cudaobjdetect.hpp"

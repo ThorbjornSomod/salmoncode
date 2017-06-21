@@ -25,7 +25,9 @@ int main() {
 
 	//imageConverter();
 
-	getRandomNegatives(); 
+	
+
+	//getRandomNegatives(); 
 
 	return 0;
 
