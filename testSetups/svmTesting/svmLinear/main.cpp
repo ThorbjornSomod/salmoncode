@@ -6,7 +6,7 @@ int main(){
 
 	// Initialize SVM model:
 
-	const char* MODEL_FILE = "lbp-hf-5000-train.scale.model";
+	const char* MODEL_FILE = "lbp-u2-1000-train.scale.model";
 
 	const struct model* SVMModel;
 

@@ -6,7 +6,7 @@ int main(){
 
 	// Initialize SVM model:
 
-	const char* MODEL_FILE = "lbp-riu2-5000-train.model";
+	const char* MODEL_FILE = "lbp-hf-4500-train.model";
 
 	struct svm_model* SVMModel;
 
@@ -80,11 +80,10 @@ int main(){
 
 	}
 
+	cout << "Background predictions:	" << back << endl;
 	cout << "Head predictions:	" << head << endl;
 	cout << "Dorsal predictions:	" << dorsal << endl;
 	cout << "Coidal predictions: 	" << coidal << endl;
-	cout << "Background predictions:	" << back << endl;
-	cout << "Searched images:	" << total << endl;
 
 	return 0;
 

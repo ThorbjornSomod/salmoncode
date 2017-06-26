@@ -398,12 +398,6 @@ bool LBP::loadMapping(string fileName){
 
 LBP & LBP::calcLBP(Mat d_img, double radius, bool borderCopy){
     
-        // clock_t startTime, endTime, sT, eT;
-        // vector<double> times;
-        // double minVal, maxVal;
-        // namedWindow( "lbp", 0 );
-        // Mat dummy( 300, 260, CV_8UC1);
-    
         // Make sure the image has Double precision version:
 
 	if(d_img.type() < CV_64F){
@@ -444,6 +438,7 @@ LBP & LBP::calcLBP(Mat d_img, double radius, bool borderCopy){
 	}
     
 	// Determine the dimensions of the input image:
+
 	int xsize = d_img.cols;
 	int ysize = d_img.rows;
     
@@ -487,7 +482,6 @@ LBP & LBP::calcLBP(Mat d_img, double radius, bool borderCopy){
 	
 	// Compute the LBP code image:
 
-        // startTime = clock();
 	for(int i = 0; i < samples; i++){
 
 		double x = spoints[i][0] + origx;
@@ -553,12 +547,6 @@ LBP & LBP::calcLBP(Mat d_img, double radius, bool borderCopy){
    	delete[] spoints;
 	result.convertTo(result, CV_8U);
 
-        // endTime = clock();
-        // times.push_back( (endTime - startTime) );
-        // cout << "lbp calc took " << times.back() << " cycles" << endl;
-    
-        // startTime = clock();
-
 	// Apply mapping if it is defined:
 
 	if(type != LBP_MAPPING_NONE){
@@ -571,10 +559,6 @@ LBP & LBP::calcLBP(Mat d_img, double radius, bool borderCopy){
 
 		}
 	}
-
-        //	endTime = clock();
-        //	times.push_back( (endTime - startTime) );
-        //	cout << "mapping took " << times.back() << " cycles" << endl;
     
 	// Store the final result:
 
@@ -1022,67 +1006,4 @@ void createSVMTrainingFile(cv::String directory, string fileName, int label, int
 		cout << "Reading file failed." << endl;
 
 	}
-}
-
-void printAvgDims(cv::String directory){
-
-	double imageCount = 0;
-	double sumWidth = 0;
-	double sumHeight = 0;
-	double avgWidth, avgHeight;
-
-	Mat src;
-
-	vector<cv::String> filenames;
-
-	cv::glob(directory, filenames);
-
-	for(size_t i = 0; i < filenames.size(); ++i){
-
-		src = imread(filenames[i]);
-
-		sumWidth += src.cols;
-
-		sumHeight += src.rows;
-
-		imageCount++;
-
-	}
-
-	avgWidth = sumWidth / imageCount;
-
-	avgHeight = sumHeight / imageCount;
-
-	cout << "Average dimensions w/h: " << avgWidth << "/" << avgHeight << endl;
-
-}
-
-void printLargestDims(cv::String directory){
-
-	double lWidth = 0, lHeight = 0;
-
-	Mat src;
-
-	vector<cv::String> filenames;
-
-	cv::glob(directory, filenames);
-
-	for(size_t i = 0; i < filenames.size(); ++i){
-
-		src = imread(filenames[i]);
-
-		if(src.cols > lWidth){
-
-			lWidth = src.cols;
-
-		}
-
-		if(src.rows > lHeight){
-
-			lHeight = src.rows;
-
-		}
-	}
-
-	cout << "Largest dimensions w/h: " << lWidth << "/" << lHeight << endl;
 }

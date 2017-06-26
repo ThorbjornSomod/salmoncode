@@ -398,12 +398,6 @@ bool LBP::loadMapping(string fileName){
 
 LBP & LBP::calcLBP(Mat d_img, double radius, bool borderCopy){
     
-        // clock_t startTime, endTime, sT, eT;
-        // vector<double> times;
-        // double minVal, maxVal;
-        // namedWindow( "lbp", 0 );
-        // Mat dummy( 300, 260, CV_8UC1);
-    
         // Make sure the image has Double precision version:
 
 	if(d_img.type() < CV_64F){
@@ -553,12 +547,6 @@ LBP & LBP::calcLBP(Mat d_img, double radius, bool borderCopy){
    	delete[] spoints;
 	result.convertTo(result, CV_8U);
 
-        // endTime = clock();
-        // times.push_back( (endTime - startTime) );
-        // cout << "lbp calc took " << times.back() << " cycles" << endl;
-    
-        // startTime = clock();
-
 	// Apply mapping if it is defined:
 
 	if(type != LBP_MAPPING_NONE){
@@ -571,10 +559,6 @@ LBP & LBP::calcLBP(Mat d_img, double radius, bool borderCopy){
 
 		}
 	}
-
-        //	endTime = clock();
-        //	times.push_back( (endTime - startTime) );
-        //	cout << "mapping took " << times.back() << " cycles" << endl;
     
 	// Store the final result:
 
@@ -727,11 +711,6 @@ vector<double> LBP::constructHF(vector<double> h){
 	}
     
 	initHF();
-    
-	// Size of the output vector:
-
-        // int FVLEN = (samples - 1) * (floor( samples / 2 ) + 1) + 3;
-        // hf.reserve( FVLEN );
 
 	hf.clear();
     
@@ -839,46 +818,17 @@ Mat returnLBPImage(Mat src, int rad, int pts, string mapping){
 
 	// Convert image to double precision:
 
+	//cv::cvtColor(src, src, CV_BGR2GRAY);
+
 	src.convertTo(src, CV_64F);
 
 	Mat lbpImg;
 
-	switch(src.channels()){
-
-		case 1:
-			lbpImg = Mat(src.size(), CV_8UC1, Scalar(0));
-			break;
-		
-		case 3: lbpImg = Mat(src.size(), CV_8UC3, Scalar(0));
-			break;
-
-		default:
-			cerr << "Unsupported number of image channels, must be 1 / 3 only." << endl;
-			exit(1);
-
-	}
-
 	LBP lbp(pts, LBP::strToType(mapping));
 
-	for(int i = 0; i < src.channels(); i++){
+	lbp.calcLBP(src, rad, true);
 
-		// Copy channel i:
-
-		Mat img(src.size(), src.depth(), 1);
-		const int from_to1[] = {i, 0};
-		mixChannels(&src, 1, &img, 1, from_to1, 1);
-
-		// Calculate the descriptor of channel i:
-
-		lbp.calcLBP(img, rad, true);
-
-		// Copy the lbp image:
-
-		const int from_to2[] = {0, i};
-		Mat tmpImg = lbp.getLBPImage();
-		mixChannels(&tmpImg, 1, &lbpImg, 1, from_to2, 1);
-
-	}
+	lbpImg = lbp.getLBPImage();
 
 	return lbpImg;
 	
@@ -1022,67 +972,4 @@ void createSVMTrainingFile(cv::String directory, string fileName, int label, int
 		cout << "Reading file failed." << endl;
 
 	}
-}
-
-void printAvgDims(cv::String directory){
-
-	double imageCount = 0;
-	double sumWidth = 0;
-	double sumHeight = 0;
-	double avgWidth, avgHeight;
-
-	Mat src;
-
-	vector<cv::String> filenames;
-
-	cv::glob(directory, filenames);
-
-	for(size_t i = 0; i < filenames.size(); ++i){
-
-		src = imread(filenames[i]);
-
-		sumWidth += src.cols;
-
-		sumHeight += src.rows;
-
-		imageCount++;
-
-	}
-
-	avgWidth = sumWidth / imageCount;
-
-	avgHeight = sumHeight / imageCount;
-
-	cout << "Average dimensions w/h: " << avgWidth << "/" << avgHeight << endl;
-
-}
-
-void printLargestDims(cv::String directory){
-
-	double lWidth = 0, lHeight = 0;
-
-	Mat src;
-
-	vector<cv::String> filenames;
-
-	cv::glob(directory, filenames);
-
-	for(size_t i = 0; i < filenames.size(); ++i){
-
-		src = imread(filenames[i]);
-
-		if(src.cols > lWidth){
-
-			lWidth = src.cols;
-
-		}
-
-		if(src.rows > lHeight){
-
-			lHeight = src.rows;
-
-		}
-	}
-
-	cout << "Largest dimensions w/h: " << lWidth << "/" << lHeight << endl;
 }

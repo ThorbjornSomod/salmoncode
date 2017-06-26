@@ -96,7 +96,7 @@ vector<vector<Rect>> slidingWindowDetection(vector<Mat> imagePyramid, Size windo
 
 				// Extract the LBP Feature Vector:
 
-				vector<double> featureVector = extractLBPFeatureVector(roiImage, 5, 1, 8, "hf", true);
+				vector<double> featureVector = extractLBPFeatureVector(roiImage, 5, 2, 8, "hf", true);
 
 				double max = *max_element(featureVector.begin(), featureVector.end());
 				double min = *min_element(featureVector.begin(), featureVector.end());

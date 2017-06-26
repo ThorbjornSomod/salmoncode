@@ -389,7 +389,7 @@ vector<vector<Rect>> testDetection(Mat src, const struct model *SVMModel){
 
 	Mat image = src;
 
-	vector<double> featureVector = extractLBPFeatureVector(image, 5, 2, 8, "hf", true);
+	vector<double> featureVector = extractLBPFeatureVector(image, 5, 2, 8, "u2", true);
 				
 	double max = *max_element(featureVector.begin(), featureVector.end());
 	double min = *min_element(featureVector.begin(), featureVector.end());

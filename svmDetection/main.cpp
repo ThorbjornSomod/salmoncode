@@ -48,9 +48,26 @@ int main(){
 
 	*/	
 
-	createSVMTrainingFile("/home/thorbjornsomod/Desktop/background", "/home/thorbjornsomod/Desktop/svmTrainingFiles/RBF/lbp-hf-PENDING/lbp-hf-5000/lbp-hf-5000-background.txt", 0, 5, 2, 8, "hf", 1);
+	String directory = "/home/thorbjornsomod/Desktop/collage/collage-lbp-u2";
+
+	vector<cv::String> filenames;
+
+	cv::glob(directory, filenames);
+
+	for(size_t i = 0; i < filenames.size(); ++i){
+
+		Mat tmp;		
+
+		tmp = imread(filenames[i], CV_LOAD_IMAGE_GRAYSCALE);
+	
+		tmp = returnLBPImage(tmp, 2, 8, "u2");
+
+		//cv::equalizeHist(tmp, tmp);	
+
+		imwrite(filenames[i], tmp);
+
+	}
 
 	return 0;
 
 }
-
