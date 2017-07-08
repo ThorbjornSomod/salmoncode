@@ -43,6 +43,7 @@ using namespace std;
 
 /*Functions*/
 
+void drawDetections(Mat &src, vector<Rect> detections, Scalar color);
 void* cascadeDetect(ctx* context);
 
 #endif /*!CASCADEDETECTION_H*/

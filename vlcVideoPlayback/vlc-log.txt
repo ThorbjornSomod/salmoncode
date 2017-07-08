@@ -7628,3 +7628,306 @@ avcodec warning: disabling direct rendering
 avcodec debug: enabling direct rendering
 avcodec warning: plane 0 not aligned
 avcodec warning: disabling direct rendering
+﻿-- logger module started --
+core debug: VLC media player - 2.2.2 Weatherwax
+core debug: Copyright © 1996-2016 the VideoLAN team
+core debug: revision 2.2.2-0-g6259d80
+core debug: configured with ./configure  '--build=x86_64-linux-gnu' '--prefix=/usr' '--includedir=${prefix}/include' '--mandir=${prefix}/share/man' '--infodir=${prefix}/share/info' '--sysconfdir=/etc' '--localstatedir=/var' '--disable-silent-rules' '--libdir=${prefix}/lib/x86_64-linux-gnu' '--libexecdir=${prefix}/lib/x86_64-linux-gnu' '--disable-maintainer-mode' '--disable-dependency-tracking' '--config-cache' '--disable-update-check' '--enable-fast-install' '--docdir=/usr/share/doc/vlc-data' '--libdir=/usr/lib' '--with-binary-version=2.2.2-5ubuntu0.16.04.2' '--enable-a52' '--enable-aa' '--enable-bluray' '--enable-bonjour' '--enable-caca' '--enable-chromaprint' '--enable-dbus' '--enable-dca' '--enable-directfb' '--enable-dvbpsi' '--enable-dvdnav' '--enable-faad' '--enable-flac' '--enable-fluidsynth' '--enable-freerdp' '--enable-freetype' '--enable-fribidi' '--disable-gles1' '--enable-gles2' '--enable-gnutls' '--enable-jack' '--enable-kate' '--enable-libass' '--enable-libmpeg2' '--enable-libxml2' '--enable-lirc' '--enable-live555' '--enable-mad' '--enable-mkv' '--enable-mod' '--enable-mpc' '--enable-mtp' '--enable-mux_ogg' '--enable-ncurses' '--enable-notify' '--enable-ogg' '--enable-opus' '--enable-pulse' '--enable-qt' '--enable-realrtsp' '--enable-samplerate' '--enable-schroedinger' '--enable-sdl' '--enable-sdl-image' '--enable-sftp' '--enable-shine' '--enable-shout' '--enable-skins2' '--enable-speex' '--enable-svg' '--enable-svgdec' '--enable-taglib' '--enable-theora' '--enable-twolame' '--enable-upnp' '--enable-vcdx' '--enable-vdpau' '--enable-vnc' '--enable-vorbis' '--enable-x264' '--enable-x265' '--enable-zvbi' '--with-kde-solid=/usr/share/kde4/apps/solid/actions/' '--disable-decklink' '--disable-dxva2' '--disable-fdkaac' '--disable-gnomevfs' '--disable-goom' '--disable-libtar' '--disable-mfx' '--disable-opencv' '--disable-projectm' '--disable-sndio' '--disable-telx' '--disable-vpx' '--disable-vsxu' '--disable-wasapi' '--enable-alsa' '--enable-atmo' '--enable-dc1394' '--enable-dv1394' '--enable-linsys' '--enable-omxil' '--enable-udev' '--enable-v4l2' '--enable-libva' '--enable-vcd' '--enable-smbclient' '--disable-oss' '--enable-crystalhd' '--enable-mmx' '--enable-sse' '--disable-neon' '--disable-altivec' 'build_alias=x86_64-linux-gnu' 'CFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security ' 'LDFLAGS=-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,--as-needed' 'CPPFLAGS=-Wdate-time -D_FORTIFY_SOURCE=2' 'CXXFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security ' 'OBJCFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security'
+core debug: using interface module "logger"
+core debug: creating audio output
+core debug: looking for audio output module matching "any": 5 candidates
+pulse debug: using library version 8.0.0
+pulse debug:  (compiled with version 8.0.0, protocol 30)
+pulse debug: connected locally to unix:/run/user/1000/pulse/native as client #22
+pulse debug: using protocol 30, server protocol 30
+pulse debug: adding sink 0: alsa_output.pci-0000_00_1f.3.analog-stereo (Built-in Audio Analog Stereo)
+core debug: using audio output module "pulse"
+core debug: keeping audio output
+core debug: Creating an input for 'validation.mp4'
+core debug: using timeshift granularity of 50 MiB, in path '/tmp'
+core debug: `file:///home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' gives access `file' demux `' path `/home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4'
+core debug: specified demux `any'
+core debug: creating demux: access='file' demux='any' location='/home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' file='/home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4'
+core debug: looking for access_demux module matching "file": 20 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='/home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4', path='/home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4'
+core debug: looking for access module matching "file": 25 candidates
+filesystem debug: opening file `/home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4'
+filesystem error: cannot open file /home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4 (No such file or directory)
+core error: File reading failed
+core error: VLC could not open the file "/home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4" (No such file or directory).
+core debug: no access modules matched
+core error: open of `file:///home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' failed
+core error: Your input can't be opened
+core error: VLC is unable to open the MRL 'file:///home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4'. Check the log for details.
+﻿-- logger module started --
+core debug: VLC media player - 2.2.2 Weatherwax
+core debug: Copyright © 1996-2016 the VideoLAN team
+core debug: revision 2.2.2-0-g6259d80
+core debug: configured with ./configure  '--build=x86_64-linux-gnu' '--prefix=/usr' '--includedir=${prefix}/include' '--mandir=${prefix}/share/man' '--infodir=${prefix}/share/info' '--sysconfdir=/etc' '--localstatedir=/var' '--disable-silent-rules' '--libdir=${prefix}/lib/x86_64-linux-gnu' '--libexecdir=${prefix}/lib/x86_64-linux-gnu' '--disable-maintainer-mode' '--disable-dependency-tracking' '--config-cache' '--disable-update-check' '--enable-fast-install' '--docdir=/usr/share/doc/vlc-data' '--libdir=/usr/lib' '--with-binary-version=2.2.2-5ubuntu0.16.04.2' '--enable-a52' '--enable-aa' '--enable-bluray' '--enable-bonjour' '--enable-caca' '--enable-chromaprint' '--enable-dbus' '--enable-dca' '--enable-directfb' '--enable-dvbpsi' '--enable-dvdnav' '--enable-faad' '--enable-flac' '--enable-fluidsynth' '--enable-freerdp' '--enable-freetype' '--enable-fribidi' '--disable-gles1' '--enable-gles2' '--enable-gnutls' '--enable-jack' '--enable-kate' '--enable-libass' '--enable-libmpeg2' '--enable-libxml2' '--enable-lirc' '--enable-live555' '--enable-mad' '--enable-mkv' '--enable-mod' '--enable-mpc' '--enable-mtp' '--enable-mux_ogg' '--enable-ncurses' '--enable-notify' '--enable-ogg' '--enable-opus' '--enable-pulse' '--enable-qt' '--enable-realrtsp' '--enable-samplerate' '--enable-schroedinger' '--enable-sdl' '--enable-sdl-image' '--enable-sftp' '--enable-shine' '--enable-shout' '--enable-skins2' '--enable-speex' '--enable-svg' '--enable-svgdec' '--enable-taglib' '--enable-theora' '--enable-twolame' '--enable-upnp' '--enable-vcdx' '--enable-vdpau' '--enable-vnc' '--enable-vorbis' '--enable-x264' '--enable-x265' '--enable-zvbi' '--with-kde-solid=/usr/share/kde4/apps/solid/actions/' '--disable-decklink' '--disable-dxva2' '--disable-fdkaac' '--disable-gnomevfs' '--disable-goom' '--disable-libtar' '--disable-mfx' '--disable-opencv' '--disable-projectm' '--disable-sndio' '--disable-telx' '--disable-vpx' '--disable-vsxu' '--disable-wasapi' '--enable-alsa' '--enable-atmo' '--enable-dc1394' '--enable-dv1394' '--enable-linsys' '--enable-omxil' '--enable-udev' '--enable-v4l2' '--enable-libva' '--enable-vcd' '--enable-smbclient' '--disable-oss' '--enable-crystalhd' '--enable-mmx' '--enable-sse' '--disable-neon' '--disable-altivec' 'build_alias=x86_64-linux-gnu' 'CFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security ' 'LDFLAGS=-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,--as-needed' 'CPPFLAGS=-Wdate-time -D_FORTIFY_SOURCE=2' 'CXXFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security ' 'OBJCFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security'
+core debug: using interface module "logger"
+core debug: creating audio output
+core debug: looking for audio output module matching "any": 5 candidates
+pulse debug: using library version 8.0.0
+pulse debug:  (compiled with version 8.0.0, protocol 30)
+pulse debug: connected locally to unix:/run/user/1000/pulse/native as client #24
+pulse debug: using protocol 30, server protocol 30
+pulse debug: adding sink 0: alsa_output.pci-0000_00_1f.3.analog-stereo (Built-in Audio Analog Stereo)
+core debug: using audio output module "pulse"
+core debug: keeping audio output
+core debug: Creating an input for 'validation.mp4'
+core debug: using timeshift granularity of 50 MiB, in path '/tmp'
+core debug: `file:///home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' gives access `file' demux `' path `/home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4'
+core debug: specified demux `any'
+core debug: creating demux: access='file' demux='any' location='/home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' file='/home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4'
+core debug: looking for access_demux module matching "file": 20 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='/home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4', path='/home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4'
+core debug: looking for access module matching "file": 25 candidates
+filesystem debug: opening file `/home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4'
+filesystem error: cannot open file /home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4 (No such file or directory)
+core error: File reading failed
+core error: VLC could not open the file "/home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4" (No such file or directory).
+core debug: no access modules matched
+core error: open of `file:///home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' failed
+core error: Your input can't be opened
+core error: VLC is unable to open the MRL 'file:///home/thorbjornsomod/salmoncode/vlcVideoPlayback/file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4'. Check the log for details.
+pulse debug: changing sink 0: alsa_output.pci-0000_00_1f.3.analog-stereo (Built-in Audio Analog Stereo)
+pulse debug: changing sink 0: alsa_output.pci-0000_00_1f.3.analog-stereo (Built-in Audio Analog Stereo)
+pulse debug: changing sink 0: alsa_output.pci-0000_00_1f.3.analog-stereo (Built-in Audio Analog Stereo)
+pulse debug: changing sink 0: alsa_output.pci-0000_00_1f.3.analog-stereo (Built-in Audio Analog Stereo)
+﻿-- logger module started --
+core debug: VLC media player - 2.2.2 Weatherwax
+core debug: Copyright © 1996-2016 the VideoLAN team
+core debug: revision 2.2.2-0-g6259d80
+core debug: configured with ./configure  '--build=x86_64-linux-gnu' '--prefix=/usr' '--includedir=${prefix}/include' '--mandir=${prefix}/share/man' '--infodir=${prefix}/share/info' '--sysconfdir=/etc' '--localstatedir=/var' '--disable-silent-rules' '--libdir=${prefix}/lib/x86_64-linux-gnu' '--libexecdir=${prefix}/lib/x86_64-linux-gnu' '--disable-maintainer-mode' '--disable-dependency-tracking' '--config-cache' '--disable-update-check' '--enable-fast-install' '--docdir=/usr/share/doc/vlc-data' '--libdir=/usr/lib' '--with-binary-version=2.2.2-5ubuntu0.16.04.2' '--enable-a52' '--enable-aa' '--enable-bluray' '--enable-bonjour' '--enable-caca' '--enable-chromaprint' '--enable-dbus' '--enable-dca' '--enable-directfb' '--enable-dvbpsi' '--enable-dvdnav' '--enable-faad' '--enable-flac' '--enable-fluidsynth' '--enable-freerdp' '--enable-freetype' '--enable-fribidi' '--disable-gles1' '--enable-gles2' '--enable-gnutls' '--enable-jack' '--enable-kate' '--enable-libass' '--enable-libmpeg2' '--enable-libxml2' '--enable-lirc' '--enable-live555' '--enable-mad' '--enable-mkv' '--enable-mod' '--enable-mpc' '--enable-mtp' '--enable-mux_ogg' '--enable-ncurses' '--enable-notify' '--enable-ogg' '--enable-opus' '--enable-pulse' '--enable-qt' '--enable-realrtsp' '--enable-samplerate' '--enable-schroedinger' '--enable-sdl' '--enable-sdl-image' '--enable-sftp' '--enable-shine' '--enable-shout' '--enable-skins2' '--enable-speex' '--enable-svg' '--enable-svgdec' '--enable-taglib' '--enable-theora' '--enable-twolame' '--enable-upnp' '--enable-vcdx' '--enable-vdpau' '--enable-vnc' '--enable-vorbis' '--enable-x264' '--enable-x265' '--enable-zvbi' '--with-kde-solid=/usr/share/kde4/apps/solid/actions/' '--disable-decklink' '--disable-dxva2' '--disable-fdkaac' '--disable-gnomevfs' '--disable-goom' '--disable-libtar' '--disable-mfx' '--disable-opencv' '--disable-projectm' '--disable-sndio' '--disable-telx' '--disable-vpx' '--disable-vsxu' '--disable-wasapi' '--enable-alsa' '--enable-atmo' '--enable-dc1394' '--enable-dv1394' '--enable-linsys' '--enable-omxil' '--enable-udev' '--enable-v4l2' '--enable-libva' '--enable-vcd' '--enable-smbclient' '--disable-oss' '--enable-crystalhd' '--enable-mmx' '--enable-sse' '--disable-neon' '--disable-altivec' 'build_alias=x86_64-linux-gnu' 'CFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security ' 'LDFLAGS=-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,--as-needed' 'CPPFLAGS=-Wdate-time -D_FORTIFY_SOURCE=2' 'CXXFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security ' 'OBJCFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security'
+core debug: using interface module "logger"
+core debug: creating audio output
+core debug: looking for audio output module matching "any": 5 candidates
+pulse debug: using library version 8.0.0
+pulse debug:  (compiled with version 8.0.0, protocol 30)
+pulse debug: connected locally to unix:/run/user/1000/pulse/native as client #31
+pulse debug: using protocol 30, server protocol 30
+pulse debug: adding sink 0: alsa_output.pci-0000_00_1f.3.analog-stereo (Built-in Audio Analog Stereo)
+core debug: using audio output module "pulse"
+core debug: keeping audio output
+core debug: Creating an input for 'validation.mp4'
+core debug: using timeshift granularity of 50 MiB, in path '/tmp'
+core debug: `file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' gives access `file' demux `//home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' path `'
+core debug: creating demux: access='file' demux='//home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' location='' file='(null)'
+core debug: looking for access_demux module matching "file": 20 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='', path='(null)'
+core debug: looking for access module matching "file": 25 candidates
+core debug: no access modules matched
+core error: open of `file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' failed
+core error: Your input can't be opened
+core error: VLC is unable to open the MRL 'file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4'. Check the log for details.
+﻿-- logger module started --
+core debug: VLC media player - 2.2.2 Weatherwax
+core debug: Copyright © 1996-2016 the VideoLAN team
+core debug: revision 2.2.2-0-g6259d80
+core debug: configured with ./configure  '--build=x86_64-linux-gnu' '--prefix=/usr' '--includedir=${prefix}/include' '--mandir=${prefix}/share/man' '--infodir=${prefix}/share/info' '--sysconfdir=/etc' '--localstatedir=/var' '--disable-silent-rules' '--libdir=${prefix}/lib/x86_64-linux-gnu' '--libexecdir=${prefix}/lib/x86_64-linux-gnu' '--disable-maintainer-mode' '--disable-dependency-tracking' '--config-cache' '--disable-update-check' '--enable-fast-install' '--docdir=/usr/share/doc/vlc-data' '--libdir=/usr/lib' '--with-binary-version=2.2.2-5ubuntu0.16.04.2' '--enable-a52' '--enable-aa' '--enable-bluray' '--enable-bonjour' '--enable-caca' '--enable-chromaprint' '--enable-dbus' '--enable-dca' '--enable-directfb' '--enable-dvbpsi' '--enable-dvdnav' '--enable-faad' '--enable-flac' '--enable-fluidsynth' '--enable-freerdp' '--enable-freetype' '--enable-fribidi' '--disable-gles1' '--enable-gles2' '--enable-gnutls' '--enable-jack' '--enable-kate' '--enable-libass' '--enable-libmpeg2' '--enable-libxml2' '--enable-lirc' '--enable-live555' '--enable-mad' '--enable-mkv' '--enable-mod' '--enable-mpc' '--enable-mtp' '--enable-mux_ogg' '--enable-ncurses' '--enable-notify' '--enable-ogg' '--enable-opus' '--enable-pulse' '--enable-qt' '--enable-realrtsp' '--enable-samplerate' '--enable-schroedinger' '--enable-sdl' '--enable-sdl-image' '--enable-sftp' '--enable-shine' '--enable-shout' '--enable-skins2' '--enable-speex' '--enable-svg' '--enable-svgdec' '--enable-taglib' '--enable-theora' '--enable-twolame' '--enable-upnp' '--enable-vcdx' '--enable-vdpau' '--enable-vnc' '--enable-vorbis' '--enable-x264' '--enable-x265' '--enable-zvbi' '--with-kde-solid=/usr/share/kde4/apps/solid/actions/' '--disable-decklink' '--disable-dxva2' '--disable-fdkaac' '--disable-gnomevfs' '--disable-goom' '--disable-libtar' '--disable-mfx' '--disable-opencv' '--disable-projectm' '--disable-sndio' '--disable-telx' '--disable-vpx' '--disable-vsxu' '--disable-wasapi' '--enable-alsa' '--enable-atmo' '--enable-dc1394' '--enable-dv1394' '--enable-linsys' '--enable-omxil' '--enable-udev' '--enable-v4l2' '--enable-libva' '--enable-vcd' '--enable-smbclient' '--disable-oss' '--enable-crystalhd' '--enable-mmx' '--enable-sse' '--disable-neon' '--disable-altivec' 'build_alias=x86_64-linux-gnu' 'CFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security ' 'LDFLAGS=-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,--as-needed' 'CPPFLAGS=-Wdate-time -D_FORTIFY_SOURCE=2' 'CXXFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security ' 'OBJCFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security'
+core debug: using interface module "logger"
+core debug: creating audio output
+core debug: looking for audio output module matching "any": 5 candidates
+pulse debug: using library version 8.0.0
+pulse debug:  (compiled with version 8.0.0, protocol 30)
+pulse debug: connected locally to unix:/run/user/1000/pulse/native as client #37
+pulse debug: using protocol 30, server protocol 30
+pulse debug: adding sink 0: alsa_output.pci-0000_00_1f.3.analog-stereo (Built-in Audio Analog Stereo)
+core debug: using audio output module "pulse"
+core debug: keeping audio output
+core debug: Creating an input for 'validation.mp4'
+core debug: using timeshift granularity of 50 MiB, in path '/tmp'
+core debug: `file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' gives access `file' demux `//home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' path `'
+core debug: creating demux: access='file' demux='//home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' location='' file='(null)'
+core debug: looking for access_demux module matching "file": 20 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='', path='(null)'
+core debug: looking for access module matching "file": 25 candidates
+core debug: no access modules matched
+core error: open of `file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' failed
+core error: Your input can't be opened
+core error: VLC is unable to open the MRL 'file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4'. Check the log for details.
+﻿-- logger module started --
+core debug: VLC media player - 2.2.2 Weatherwax
+core debug: Copyright © 1996-2016 the VideoLAN team
+core debug: revision 2.2.2-0-g6259d80
+core debug: configured with ./configure  '--build=x86_64-linux-gnu' '--prefix=/usr' '--includedir=${prefix}/include' '--mandir=${prefix}/share/man' '--infodir=${prefix}/share/info' '--sysconfdir=/etc' '--localstatedir=/var' '--disable-silent-rules' '--libdir=${prefix}/lib/x86_64-linux-gnu' '--libexecdir=${prefix}/lib/x86_64-linux-gnu' '--disable-maintainer-mode' '--disable-dependency-tracking' '--config-cache' '--disable-update-check' '--enable-fast-install' '--docdir=/usr/share/doc/vlc-data' '--libdir=/usr/lib' '--with-binary-version=2.2.2-5ubuntu0.16.04.2' '--enable-a52' '--enable-aa' '--enable-bluray' '--enable-bonjour' '--enable-caca' '--enable-chromaprint' '--enable-dbus' '--enable-dca' '--enable-directfb' '--enable-dvbpsi' '--enable-dvdnav' '--enable-faad' '--enable-flac' '--enable-fluidsynth' '--enable-freerdp' '--enable-freetype' '--enable-fribidi' '--disable-gles1' '--enable-gles2' '--enable-gnutls' '--enable-jack' '--enable-kate' '--enable-libass' '--enable-libmpeg2' '--enable-libxml2' '--enable-lirc' '--enable-live555' '--enable-mad' '--enable-mkv' '--enable-mod' '--enable-mpc' '--enable-mtp' '--enable-mux_ogg' '--enable-ncurses' '--enable-notify' '--enable-ogg' '--enable-opus' '--enable-pulse' '--enable-qt' '--enable-realrtsp' '--enable-samplerate' '--enable-schroedinger' '--enable-sdl' '--enable-sdl-image' '--enable-sftp' '--enable-shine' '--enable-shout' '--enable-skins2' '--enable-speex' '--enable-svg' '--enable-svgdec' '--enable-taglib' '--enable-theora' '--enable-twolame' '--enable-upnp' '--enable-vcdx' '--enable-vdpau' '--enable-vnc' '--enable-vorbis' '--enable-x264' '--enable-x265' '--enable-zvbi' '--with-kde-solid=/usr/share/kde4/apps/solid/actions/' '--disable-decklink' '--disable-dxva2' '--disable-fdkaac' '--disable-gnomevfs' '--disable-goom' '--disable-libtar' '--disable-mfx' '--disable-opencv' '--disable-projectm' '--disable-sndio' '--disable-telx' '--disable-vpx' '--disable-vsxu' '--disable-wasapi' '--enable-alsa' '--enable-atmo' '--enable-dc1394' '--enable-dv1394' '--enable-linsys' '--enable-omxil' '--enable-udev' '--enable-v4l2' '--enable-libva' '--enable-vcd' '--enable-smbclient' '--disable-oss' '--enable-crystalhd' '--enable-mmx' '--enable-sse' '--disable-neon' '--disable-altivec' 'build_alias=x86_64-linux-gnu' 'CFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security ' 'LDFLAGS=-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,--as-needed' 'CPPFLAGS=-Wdate-time -D_FORTIFY_SOURCE=2' 'CXXFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security ' 'OBJCFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security'
+core debug: using interface module "logger"
+core debug: creating audio output
+core debug: looking for audio output module matching "any": 5 candidates
+pulse debug: using library version 8.0.0
+pulse debug:  (compiled with version 8.0.0, protocol 30)
+pulse debug: connected locally to unix:/run/user/1000/pulse/native as client #39
+pulse debug: using protocol 30, server protocol 30
+pulse debug: adding sink 0: alsa_output.pci-0000_00_1f.3.analog-stereo (Built-in Audio Analog Stereo)
+core debug: using audio output module "pulse"
+core debug: keeping audio output
+core debug: Creating an input for 'validation.mp4'
+core debug: using timeshift granularity of 50 MiB, in path '/tmp'
+core debug: `file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' gives access `file' demux `//home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' path `'
+core debug: creating demux: access='file' demux='//home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' location='' file='(null)'
+core debug: looking for access_demux module matching "file": 20 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='', path='(null)'
+core debug: looking for access module matching "file": 25 candidates
+core debug: no access modules matched
+core error: open of `file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' failed
+core error: Your input can't be opened
+core error: VLC is unable to open the MRL 'file///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4'. Check the log for details.
+﻿-- logger module started --
+core debug: VLC media player - 2.2.2 Weatherwax
+core debug: Copyright © 1996-2016 the VideoLAN team
+core debug: revision 2.2.2-0-g6259d80
+core debug: configured with ./configure  '--build=x86_64-linux-gnu' '--prefix=/usr' '--includedir=${prefix}/include' '--mandir=${prefix}/share/man' '--infodir=${prefix}/share/info' '--sysconfdir=/etc' '--localstatedir=/var' '--disable-silent-rules' '--libdir=${prefix}/lib/x86_64-linux-gnu' '--libexecdir=${prefix}/lib/x86_64-linux-gnu' '--disable-maintainer-mode' '--disable-dependency-tracking' '--config-cache' '--disable-update-check' '--enable-fast-install' '--docdir=/usr/share/doc/vlc-data' '--libdir=/usr/lib' '--with-binary-version=2.2.2-5ubuntu0.16.04.2' '--enable-a52' '--enable-aa' '--enable-bluray' '--enable-bonjour' '--enable-caca' '--enable-chromaprint' '--enable-dbus' '--enable-dca' '--enable-directfb' '--enable-dvbpsi' '--enable-dvdnav' '--enable-faad' '--enable-flac' '--enable-fluidsynth' '--enable-freerdp' '--enable-freetype' '--enable-fribidi' '--disable-gles1' '--enable-gles2' '--enable-gnutls' '--enable-jack' '--enable-kate' '--enable-libass' '--enable-libmpeg2' '--enable-libxml2' '--enable-lirc' '--enable-live555' '--enable-mad' '--enable-mkv' '--enable-mod' '--enable-mpc' '--enable-mtp' '--enable-mux_ogg' '--enable-ncurses' '--enable-notify' '--enable-ogg' '--enable-opus' '--enable-pulse' '--enable-qt' '--enable-realrtsp' '--enable-samplerate' '--enable-schroedinger' '--enable-sdl' '--enable-sdl-image' '--enable-sftp' '--enable-shine' '--enable-shout' '--enable-skins2' '--enable-speex' '--enable-svg' '--enable-svgdec' '--enable-taglib' '--enable-theora' '--enable-twolame' '--enable-upnp' '--enable-vcdx' '--enable-vdpau' '--enable-vnc' '--enable-vorbis' '--enable-x264' '--enable-x265' '--enable-zvbi' '--with-kde-solid=/usr/share/kde4/apps/solid/actions/' '--disable-decklink' '--disable-dxva2' '--disable-fdkaac' '--disable-gnomevfs' '--disable-goom' '--disable-libtar' '--disable-mfx' '--disable-opencv' '--disable-projectm' '--disable-sndio' '--disable-telx' '--disable-vpx' '--disable-vsxu' '--disable-wasapi' '--enable-alsa' '--enable-atmo' '--enable-dc1394' '--enable-dv1394' '--enable-linsys' '--enable-omxil' '--enable-udev' '--enable-v4l2' '--enable-libva' '--enable-vcd' '--enable-smbclient' '--disable-oss' '--enable-crystalhd' '--enable-mmx' '--enable-sse' '--disable-neon' '--disable-altivec' 'build_alias=x86_64-linux-gnu' 'CFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security ' 'LDFLAGS=-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,--as-needed' 'CPPFLAGS=-Wdate-time -D_FORTIFY_SOURCE=2' 'CXXFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security ' 'OBJCFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security'
+core debug: using interface module "logger"
+core debug: creating audio output
+core debug: looking for audio output module matching "any": 5 candidates
+pulse debug: using library version 8.0.0
+pulse debug:  (compiled with version 8.0.0, protocol 30)
+pulse debug: connected locally to unix:/run/user/1000/pulse/native as client #43
+pulse debug: using protocol 30, server protocol 30
+pulse debug: adding sink 0: alsa_output.pci-0000_00_1f.3.analog-stereo (Built-in Audio Analog Stereo)
+core debug: using audio output module "pulse"
+core debug: keeping audio output
+core debug: Creating an input for 'validation.mp4'
+core debug: using timeshift granularity of 50 MiB, in path '/tmp'
+core debug: `file:///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' gives access `file' demux `' path `/home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4'
+core debug: specified demux `any'
+core debug: creating demux: access='file' demux='any' location='/home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' file='/home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4'
+core debug: looking for access_demux module matching "file": 20 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='/home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4', path='/home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4'
+core debug: looking for access module matching "file": 25 candidates
+filesystem debug: opening file `/home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4'
+core debug: using access module "filesystem"
+core debug: Using stream method for AStream*
+core debug: starting pre-buffering
+core debug: received first data after 0 ms
+core debug: pre-buffering done 1024 bytes in 0s - 166666 KiB/s
+core debug: looking for stream_filter module matching "any": 9 candidates
+core debug: no stream_filter modules matched
+core debug: looking for stream_filter module matching "record": 9 candidates
+core debug: using stream_filter module "record"
+core debug: creating demux: access='file' demux='any' location='/home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' file='/home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4'
+core debug: looking for demux module matching "mp4": 66 candidates
+mp4 debug: added fragment moov
+mp4 debug: dumping root Box "root"
+mp4 debug: |   + ftyp size 32 offset 0
+mp4 debug: |   + free size 8 offset 32
+mp4 debug: |   + mdat size 42608629 offset 40
+mp4 debug: |   + moov size 9171 offset 42608669
+mp4 debug: |   |   + mvhd size 108 offset 42608677
+mp4 debug: |   |   + trak size 8957 offset 42608785
+mp4 debug: |   |   |   + tkhd size 92 offset 42608793
+mp4 debug: |   |   |   + edts size 36 offset 42608885
+mp4 debug: |   |   |   |   + elst size 28 offset 42608893
+mp4 debug: |   |   |   + mdia size 8821 offset 42608921
+mp4 debug: |   |   |   |   + mdhd size 32 offset 42608929
+mp4 debug: |   |   |   |   + hdlr size 45 offset 42608961
+mp4 debug: |   |   |   |   + minf size 8736 offset 42609006
+mp4 debug: |   |   |   |   |   + vmhd size 20 offset 42609014
+mp4 debug: |   |   |   |   |   + dinf size 36 offset 42609034
+mp4 debug: |   |   |   |   |   |   + dref size 28 offset 42609042
+mp4 debug: |   |   |   |   |   |   |   + url  size 12 offset 42609058
+mp4 debug: |   |   |   |   |   + stbl size 8672 offset 42609070
+mp4 debug: |   |   |   |   |   |   + stsd size 152 offset 42609078
+mp4 debug: |   |   |   |   |   |   |   + avc1 size 136 offset 42609094
+mp4 debug: |   |   |   |   |   |   |   |   + avcC size 50 offset 42609180
+mp4 debug: |   |   |   |   |   |   + stts size 4544 offset 42609230
+mp4 debug: |   |   |   |   |   |   + stss size 56 offset 42613774
+mp4 debug: |   |   |   |   |   |   + stsc size 304 offset 42613830
+mp4 debug: |   |   |   |   |   |   + stsz size 3424 offset 42614134
+mp4 debug: |   |   |   |   |   |   + stco size 184 offset 42617558
+mp4 debug: |   |   + udta size 98 offset 42617742
+mp4 debug: |   |   |   + meta size 90 offset 42617750
+mp4 debug: |   |   |   |   + hdlr size 33 offset 42617762
+mp4 debug: |   |   |   |   + ilst size 45 offset 42617795
+mp4 debug: |   |   |   |   |   + ctoo size 37 offset 42617803
+mp4 debug: ISO Media file (isom) version 512.
+mp4 debug: found 1 tracks
+mp4 warning: elst box found
+mp4 debug:    - [0] duration=34026ms media time=0ms) rate=1.0
+mp4 debug: track[Id 0x1] read 42 chunk
+mp4 warning: STTS table of 566 entries
+mp4 debug: track[Id 0x1] read 851 samples length:34s
+core debug: selecting program id=0
+mp4 debug: adding track[Id 0x1] video (enable) language eng
+mp4 debug: fragment offset 42608669, data 48<->42608669, duration 0
+core debug: using demux module "mp4"
+core debug: looking for a subtitle file in /home/thorbjornsomod/salmoncode/vlcVideoPlayback/
+core debug: looking for decoder module matching "any": 42 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: trying to use direct rendering
+avcodec debug: allowing 4 thread(s) for decoding
+avcodec debug: avcodec codec (H264 - MPEG-4 AVC (part 10)) started
+avcodec debug: using frame thread mode with 4 threads
+core debug: using decoder module "avcodec"
+core debug: looking for meta reader module matching "any": 2 candidates
+lua debug: Trying Lua scripts in /home/thorbjornsomod/.local/share/vlc/lua/meta/reader
+lua debug: Trying Lua scripts in /usr/lib/vlc/lua/meta/reader
+lua debug: Trying Lua playlist script /usr/lib/vlc/lua/meta/reader/filename.luac
+lua debug: Trying Lua scripts in /usr/share/vlc/lua/meta/reader
+core debug: no meta reader modules matched
+core debug: `file:///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4' successfully opened
+mp4 debug: elst (0) gives 0ms (movie)-> 0ms (track)
+mp4 debug: track[Id 0x1] using Sync Sample Box (stss)
+mp4 debug: stss gives 0 --> 0 (sample number)
+core debug: Buffering 0%
+core debug: Buffering 13%
+core debug: Buffering 26%
+core debug: Buffering 39%
+core debug: Buffering 53%
+core debug: Buffering 66%
+avcodec debug: available hardware decoder output format 109 (vdpau)
+avcodec debug: available hardware decoder output format 53 (vaapi_vld)
+avcodec debug: available software decoder output format 12 (yuvj420p)
+core debug: Buffering 79%
+core debug: Buffering 93%
+core debug: looking for hw decoder module matching "none": 4 candidates
+core debug: no hw decoder modules matched
+core debug: Stream buffering done (319 ms in 0 ms)
+core debug: looking for text renderer module matching "any": 2 candidates
+freetype debug: Building font databases.
+freetype debug: Took 0 microseconds
+freetype debug: Using Serif Bold as font from file /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf
+freetype debug: Using Monospace as mono-font from file /usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+core debug: looking for video filter2 module matching "any": 63 candidates
+swscale debug: 32x32 (32x32) chroma: YUVA -> 16x16 (16x16) chroma: RGBA with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: looking for video filter2 module matching "any": 63 candidates
+yuvp debug: YUVP to YUVA converter
+core debug: using video filter2 module "yuvp"
+core debug: Deinterlacing available
+core debug: deinterlace 0, mode blend, is_needed 0
+core debug: Opening vout display wrapper
+core debug: looking for vout display module matching "vmem": 14 candidates
+core debug: VoutDisplayEvent 'fullscreen' 0
+core debug: VoutDisplayEvent 'resize' 960x540 window
+core debug: using vout display module "vmem"
+core debug: A filter to adapt decoder to display is needed
+core debug: looking for video filter2 module matching "any": 63 candidates
+swscale debug: 1920x1080 (1920x1090) chroma: J420 -> 960x540 (960x540) chroma: RV24 with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: Filter 'Swscale' (0x7ff244001fc8) appended to chain
+core debug: original format sz 1920x1090, of (0,0), vsz 1920x1080, 4cc J420, sar 1:1, msk r0x0 g0x0 b0x0
+core debug: removing module "freetype"
+core debug: looking for text renderer module matching "any": 2 candidates
+freetype debug: Building font databases.
+freetype debug: Took 0 microseconds
+freetype debug: Using Serif Bold as font from file /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf
+freetype debug: Using Monospace as mono-font from file /usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+core error: Failed to change zoom
+core error: Failed to set on top
+core error: Failed to change source AR
+core debug: End of video preroll
+core debug: Received first picture
+core debug: Decoder wait done in 51 ms

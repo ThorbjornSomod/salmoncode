@@ -1,5 +1,17 @@
 #include "cascadeDetect.hpp"
 
+void drawDetections(Mat &src, vector<Rect> detections, Scalar color){
+
+	if(!detections.empty()){
+
+		for(int i = 0; i < static_cast<int>(detections.size()); i++){
+
+			cv::rectangle(src, detections[i], color);
+
+		}
+	}
+}
+
 void* cascadeDetect(ctx* context) {
 
 	sleep(0.5);
@@ -90,36 +102,16 @@ void* cascadeDetect(ctx* context) {
 
 		// Draw fish heads:
 
-		if(!fishHeads.empty() && detectHeads){
-
-			for(int i = 0; i < static_cast<int>(fishHeads.size()); i++){
-
-				cv::rectangle(cpuFrame, fishHeads[i], cv::Scalar(70, 212, 37));
-
-			}
-		}
-
-		// Draw coidal fins:
-
-		if (!coidalFins.empty() && detectCoidals){ 
-
-			for(int i = 0; i < static_cast<int>(coidalFins.size()); i++){
-
-				cv::rectangle(cpuFrame, coidalFins[i], cv::Scalar(49, 37, 212));
-
-			}
-		}
+		if(detectHeads){drawDetections(cpuFrame, fishHeads, cv::Scalar(70, 212, 37));}
 
 		// Draw dorsal fins:
 
-		if(!dorsalFins.empty() && detectDorsals){
+		if(detectDorsals){drawDetections(cpuFrame, dorsalFins, cv::Scalar(49, 37, 212));}
 
-			for(int i = 0; i < static_cast<int>(dorsalFins.size()); i++){
+		// Draw coidal fins:
 
-				cv::rectangle(cpuFrame, dorsalFins[i], cv::Scalar(181, 38, 213));
-				
-			}
-		}
+		if(detectCoidals){drawDetections(cpuFrame, coidalFins, cv::Scalar(181, 38, 213));}
+
 		
 		// Toggle writer:
 

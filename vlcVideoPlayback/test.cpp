@@ -17,8 +17,8 @@ struct ctx {
 
 // Define output video resolution:
 
-#define VIDEO_WIDTH     1280
-#define VIDEO_HEIGHT    720
+#define VIDEO_WIDTH     960
+#define VIDEO_HEIGHT    540
 
 void *lock(void *data, void **p_pixels){
 
@@ -82,8 +82,8 @@ int main()
 
 	// Read a distant video stream:
 
-	media = libvlc_media_new_location(vlcInstance, "rtsp://admin:ral1004@192.168.2.3:2020/videoinput_1/h264_1/media.stm");
-	//media = libvlc_media_new_path(vlcInstance, "file///home/sealab/salmoncode/cascadeDetection/shitfile.mp4");
+	//media = libvlc_media_new_location(vlcInstance, "rtsp://admin:ral1004@192.168.2.3:2020/videoinput_1/h264_1/media.stm");
+	media = libvlc_media_new_location(vlcInstance, "file:///home/thorbjornsomod/salmoncode/vlcVideoPlayback/validation.mp4");
 
 	mp = libvlc_media_player_new_from_media(media);
 
